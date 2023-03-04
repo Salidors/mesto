@@ -1,0 +1,21 @@
+.header_type_pos {
+    margin: 45px 200px 0;
+    max-width: 1240px;
+}
+
+.header {
+    background-color: black;
+    display: block;
+}
+
+.logo {
+    max-width: 142px;
+    margin-bottom: 41px;
+    color: #FFFFFF;
+}
+
+.line {
+    max-width: 880px;
+    border-top: 1px solid #545454;
+
+}
