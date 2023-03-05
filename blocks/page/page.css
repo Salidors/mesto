@@ -1,13 +1,19 @@
 .page {
     margin: 0 auto;
-    display: block;
     font-family: 'Inter', Arial, sans-serif;
     background: #000;
     box-sizing: border-box;
-    max-width: 1280px;
+    max-width: 890px;
     color: #fff;
+    align-items: center;
 }
 
 .page__type-pos {
     margin: 45px 200px 60px;
+}
+
+@media screen and (max-width: 767px) {
+    .page__type-pos {
+        margin: 28px 19px 36px;
+    }
 }
