@@ -1,10 +1,13 @@
 .page {
     margin: 0 auto;
-    background-color: black;
     display: block;
     font-family: 'Inter', Arial, sans-serif;
-    background: #2A2C2F;
+    background: #000;
     box-sizing: border-box;
     max-width: 1280px;
     color: #fff;
+}
+
+.page__type-pos {
+    margin: 45px 200px 60px;
 }
