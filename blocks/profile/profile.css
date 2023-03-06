@@ -9,36 +9,43 @@
     display: flex;
 }
 
+.profile__info-container {
+    display: flex;
+    align-items: center;
+}
+
 .profile__avatar-image {
-    margin: 36.25px 0 47.25px;
-    background-image: url(../../image/kusto.jpg);
-    background-size: 100%;
-    border-radius: 50%;
-    flex-wrap: nowrap;
-    width: 100%;
+    margin: 40px 30px 50px 0;
+    padding: 0;
+    max-width: 168px;
 }
 
 .profile__info {
-    margin: 0;
+    margin: 62px 0 0;
     padding: 0;
-    display: grid;
     flex-flow: column;
-    justify-content: center;
 }
 
 .profile__name {
-    margin: 62px 18px 16px 4px;
+    margin: 0;
     padding: 0;
+    display: flex;
     font-style: normal;
     font-weight: 500;
     font-size: 42px;
-    line-height: 1.14;
+    line-height: 1.2;
     width: fit-content;
 }
 
 .profile__button {
-    background-color: black;
+    margin: 0 0 0 18px;
+    padding: 0;
     width: 24px;
+    height: 100%;
+}
+
+.profile__button:hover {
+    opacity: 0.6;
 }
 
 .profile__title {
@@ -59,6 +66,10 @@
     border-radius: 5px;
     background-color: black;
 
+}
+
+.profile__add-button:hover {
+    opacity: 0.6;
 }
 
 @media screen and (max-width: 767px) {

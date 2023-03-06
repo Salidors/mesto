@@ -1,5 +1,5 @@
 .cards {
-    margin: 50px auto;
+    margin: 0 auto;
     padding: 0;
     display: flex;
     align-items: center;
@@ -55,6 +55,14 @@
     padding: 0;
     width: 22px;
     text-align: center;
+}
+
+.card__item-like:hover {
+    opacity: 0.6;
+}
+
+.card__item-like:active {
+    color: #000;
 }
 
 @media screen and (max-width: 767px) {

@@ -10,13 +10,14 @@
 
 .logo {
     max-width: 142px;
-    margin-bottom: 41px;
+    margin-bottom: 40px;
     color: #FFFFFF;
 }
 
 .line {
     max-width: 880px;
-    border-top: 1px solid #545454;
+    opacity: 0.7;
+    border: 1px solid #545454;
 
 }
 
