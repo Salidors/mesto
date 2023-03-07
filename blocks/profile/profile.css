@@ -78,4 +78,27 @@
         justify-content: center;
         align-items: center;
     }
+
+    .profile__container {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+
+    .profile__avatar-image {
+        margin: 42px auto 26px;
+    }
+
+    .profile__info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 36px;
+    }
+
+    .profile__add-button {
+        width: 282px;
+    }
+    .profile__add-img {
+        width: 100%;
+    }
 }
