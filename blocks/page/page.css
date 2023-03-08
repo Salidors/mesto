@@ -8,14 +8,3 @@
     align-items: center;
     display: block;
 }
-
-.page__type-pos {
-    margin: 45px auto 60px;
-}
-
-
-@media screen and (max-width: 767px) {
-    .page__type-pos {
-        margin: 28px 19px 36px;
-    }
-}
