@@ -3,12 +3,7 @@
     padding: 0;
     width: 22px;
     text-align: center;
-    cursor: pointer;
     background: no-repeat url(/image/Vector_like.svg);
-}
-
-.card__item-like:hover {
-    opacity: 0.6;
 }
 
 .card__item-like:active {
