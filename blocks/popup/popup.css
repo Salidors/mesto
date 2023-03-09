@@ -46,14 +46,6 @@
     border: 1px solid #000000;
 }
 
-.link {
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.link:hover {
-    opacity: 0.6;
-}
 
 .popup__content {
     margin: 34px 36px 36px;
