@@ -5,10 +5,21 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
+    max-width: 500px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 1023px) {
+    .profile__title {
+        max-width: 350px;
+    }
 }
 
 @media screen and (max-width: 767px) {
     .profile__title {
         margin: 14px 0 14px;
-    } 
+        max-width: 282px;
+    }
 }

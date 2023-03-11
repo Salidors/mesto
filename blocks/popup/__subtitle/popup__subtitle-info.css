@@ -7,5 +7,6 @@
     line-height: 1.21;
     border: none;
     outline: none;
+    min-width: 100%;
 }
 

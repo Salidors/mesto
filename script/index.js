@@ -10,6 +10,16 @@ const closePopup = function () {
 
 const openPopup = function () {
     popupElement.classList.add("popup__is-opened");
+
+    let name = document.querySelector('.popup__subtitle-name');
+    let info = document.querySelector('.popup__subtitle-info');
+
+    let profileName = document.querySelector('.profile__name');
+    let profileTitle = document.querySelector('.profile__title');
+
+
+    name.value = profileName.textContent;
+    info.value = profileTitle.textContent;
 };
 
 
@@ -31,8 +41,7 @@ popupElement.addEventListener("click", closePopupByClickOnOverlay);
 
 const addButton = document.querySelector('.popup__save');
 
-function addForm(event) {
-    console.log(event);
+function addForm() {
     let name = document.querySelector('.popup__subtitle-name');
     let info = document.querySelector('.popup__subtitle-info');
 
@@ -50,3 +59,8 @@ function addForm(event) {
 }
 
 addButton.addEventListener('click', addForm);
+
+const popupContainer = document.querySelector(".popup__container");
+popupContainer.addEventListener('keydown', (event) => {
+    if (event.key === "Enter") addForm();
+});
