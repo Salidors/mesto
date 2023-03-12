@@ -1,7 +1,5 @@
 .card__item {
-    object-fit: fill;
-    max-width: 284px;
-    max-height: 361px;
+    max-width: 282px;
     width: 100%;
     flex-direction: column;
     display: flex;

@@ -2,7 +2,3 @@
     cursor: pointer;
     transition: 0.3s;
 }
-
-.link:hover {
-    opacity: 0.6;
-}

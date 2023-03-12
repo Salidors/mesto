@@ -5,113 +5,114 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto</title>
 </head>
 
 <body class="page page_type_pos">
 
+
     <!--=============HEADER===============-->
     <header class="header">
         <img class="header__logo" src="./image/Vector_logo.svg" alt="Логотип Место">
-        <div class="header__line"></div>
     </header>
 
-    <!--=============PROFILE===============-->
-    <section class="profile">
-        <div class="profile__container">
-            <img class="profile__avatar-image" src="./image/kusto.svg" alt="Жак-Ив Кусто">
+    <main>
 
-            <div class="profile__info">
-                <div class="profile__info-container">
-                    <h1 class="profile__name">Жак-Ив Кусто</h1>
-                    <img class="profile__button link" src="./image/Edit_Button.svg" alt="Иконка карандаш">
+        <!--=============PROFILE===============-->
+        <section class="profile profile_type_pos">
+            <div class="profile__container">
+                <img class="profile__avatar_image" src="./image/kusto.png" alt="Жак-Ив Кусто">
+
+                <div class="profile__info">
+                    <div class="profile__info_container">
+                        <h1 class="profile__name">Жак-Ив Кусто</h1>
+                        <button class="profile__button link" type="button"><img src="./image/Edit_Button.svg"
+                                alt="Иконка карандаш">
+                        </button>
+                    </div>
+                    <p class="profile__title">Исследователь океана</p>
                 </div>
-                <p class="profile__title">Исследователь океана</p>
             </div>
-        </div>
 
-        <button class="profile__add-button link" type="button"> <img class="profile__add-img"
-                src="./image/profile_button.svg" alt="Кнопка с плюсом">
-        </button>
-    </section>
+            <button class="profile__add_button link" type="button"> <img class="profile__add_img"
+                    src="./image/profile_button.svg" alt="Кнопка с плюсом">
+            </button>
+        </section>
 
 
-    <!--=============CARDS===============-->
-    <section aria-label="Фото" class="cards">
-        <ul class="card">
-            <li class="card__item">
-                <img src="./image/kirill-pershin-1088404-unsplash.jpg" alt="Замок в горах" class="card__image">
-                <div class="card__container">
-                    <h3 class="card__item-title">Карачаевск</h3>
-                    <div class="card__item-like link"></div>
-                </div>
-            </li>
+        <!--=============CARDS===============-->
+        <section class="cards" aria-label="Фото">
+            <ul class="cards__list">
+                <li class="card__item">
+                    <img src="./image/kirill-pershin-1088404-unsplash.jpg" alt="Замок в горах" class="card__image">
+                    <div class="card__container">
+                        <h2 class="card__item_title">Карачаевск</h2>
+                        <button type="button" class="card__item_like link"></button>
+                    </div>
+                </li>
 
-            <li class="card__item">
-                <img src="./image/kirill-pershin-1404681-unsplash.jpg" alt="Долина" class="card__image">
-                <div class="card__container">
-                    <h3 class="card__item-title">Гора Эльбрус</h3>
-                    <div class="card__item-like link"></div>
-                </div>
-            </li>
+                <li class="card__item">
+                    <img src="./image/kirill-pershin-1404681-unsplash.jpg" alt="Долина" class="card__image">
+                    <div class="card__container">
+                        <h2 class="card__item_title">Гора Эльбрус</h2>
+                        <button type="button" class="card__item_like link"></button>
+                    </div>
+                </li>
 
-            <li class="card__item">
-                <img src="./image/kirill-pershin-1556355-unsplash.jpg" alt="Горная вершина" class="card__image">
-                <div class="card__container">
-                    <h3 class="card__item-title">Домбай</h3>
-                    <div class="card__item-like link"></div>
-                </div>
-            </li>
+                <li class="card__item">
+                    <img src="./image/kirill-pershin-1556355-unsplash.jpg" alt="Горная вершина" class="card__image">
+                    <div class="card__container">
+                        <h2 class="card__item_title">Домбай</h2>
+                        <button type="button" class="card__item_like link"></button>
+                    </div>
+                </li>
 
-            <li class="card__item">
-                <img src="./image/kirill-pershin-1404681-unsplash.jpg" alt="Долина" class="card__image">
-                <div class="card__container">
-                    <h3 class="card__item-title">Гора Эльбрус</h3>
-                    <div class="card__item-like link"></div>
-                </div>
-            </li>
+                <li class="card__item">
+                    <img src="./image/kirill-pershin-1404681-unsplash.jpg" alt="Долина" class="card__image">
+                    <div class="card__container">
+                        <h2 class="card__item_title">Гора Эльбрус</h2>
+                        <button type="button" class="card__item_like link"></button>
+                    </div>
+                </li>
 
-            <li class="card__item">
-                <img src="./image/kirill-pershin-1556355-unsplash.jpg" alt="Горная вершина" class="card__image">
-                <div class="card__container">
-                    <h3 class="card__item-title">Домбай</h3>
-                    <div class="card__item-like link"></div>
-                </div>
-            </li>
+                <li class="card__item">
+                    <img src="./image/kirill-pershin-1556355-unsplash.jpg" alt="Горная вершина" class="card__image">
+                    <div class="card__container">
+                        <h2 class="card__item_title">Домбай</h2>
+                        <button type="button" class="card__item_like link"></button>
+                    </div>
+                </li>
 
-            <li class="card__item">
-                <img src="./image/kirill-pershin-1088404-unsplash.jpg" alt="Замок в горах" class="card__image">
-                <div class="card__container">
-                    <h3 class="card__item-title">Карачаево-Черкессия</h3>
-                    <div class="card__item-like link"></div>
-                </div>
-            </li>
-        </ul>
-    </section>
+                <li class="card__item">
+                    <img src="./image/kirill-pershin-1088404-unsplash.jpg" alt="Замок в горах" class="card__image">
+                    <div class="card__container">
+                        <h2 class="card__item_title">Карачаево-Черкессия</h2>
+                        <button type="button" class="card__item_like link"></button>
+                    </div>
+                </li>
+            </ul>
+        </section>
 
+        <!--=============POPUP===============-->
+        <section class="popup">
+            <form class="popup__container">
+                <button class="popup__close link" type="button"></button>
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <input class="popup__input popup__input_subtitle_name" name="name" type="text" placeholder="Введите ФИО">
+                <input class="popup__input popup__input_subtitle_info" name="info" type="text" placeholder="Род деятельности">
+                <button class="popup__save link" name="save" type="submit">Сохранить</button>
+            </form>
+        </section>
+
+    </main>
     <!--=============FOOTER===============-->
     <footer class="footer">
         <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
     </footer>
 
-    <!--=============POPUP===============-->
-    <section class="popup">
-        <div class="popup__container">
-            <button class="popup__close link"></button>
-            <div class="popup__content">
-                <h2 class="popup__title">Редактировать профиль</h2>
-                <input class="popup__subtitle-name" type="text" placeholder="Введите ФИО">
-                <div class="popup__line"></div>
-                <input class="popup__subtitle-info" type="text" placeholder="Род деятельности">
-                <div class="popup__line"></div>
-                <button class="popup__save link">Сохранить</button>
-
-            </div>
-        </div>
-    </section>
-
-    <script src="./script/index.js"></script>
+    <script src="./scripts/index.js"></script>
 </body>
 
 </html>

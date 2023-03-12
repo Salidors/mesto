@@ -3,4 +3,11 @@
     padding: 0;
     width: 24px;
     height: 100%;
+    background-color: black;
+    border: 1px solid #FFFFFF;
+    align-self: end;
+}
+
+.profile__button:hover {
+    opacity: 0.6;
 }
