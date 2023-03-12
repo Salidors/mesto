@@ -2,8 +2,10 @@
     margin: 0;
     padding: 0;
     width: 22px;
+    height: 22px;
     border: none;
     text-align: center;
+    justify-content: center;
     background: no-repeat url(../../../image/Vector_like.svg);
 }
 
