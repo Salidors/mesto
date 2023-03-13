@@ -1,4 +1,4 @@
-.card__item_like {
+.card__like {
   margin: 0;
   padding: 0;
   width: 22px;
@@ -9,10 +9,10 @@
   background: no-repeat url(../../../../image/Vector_like.svg);
 }
 
-.card__item_like:hover {
+.card__like:hover {
   opacity: 0.6;
 }
-.card__item_like:active {
+.card__like:active {
   opacity: 1;
   transition: color 0s;
   background: no-repeat url(../../../../image/Vector_like_black.svg);
