@@ -6,7 +6,7 @@
   border: none;
   text-align: center;
   justify-content: center;
-  background: no-repeat url(../../../../image/Vector_like.svg);
+  background: no-repeat url(../../../image/Vector_like.svg);
 }
 
 .card__like:hover {
@@ -15,5 +15,5 @@
 .card__like:active {
   opacity: 1;
   transition: color 0s;
-  background: no-repeat url(../../../../image/Vector_like_black.svg);
+  background: no-repeat url(../../../image/Vector_like_black.svg);
 }
