@@ -17,8 +17,6 @@
 @media screen and (max-width: 767px) {
     .popup__save {
         margin: 45px 0 0 0;
-        font-style: normal;
-        font-weight: 400;
         font-size: 14px;
         line-height: 1.21;
         height: 46px;

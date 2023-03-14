@@ -24,9 +24,7 @@
 @media screen and (max-width: 767px) {
     .cards__list {
         flex-wrap: nowrap;
-        justify-content: center;
         flex-direction: column;
-        grid-gap: 20px;
         grid-template-columns: 1fr;
     }
 }

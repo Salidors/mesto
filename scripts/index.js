@@ -4,8 +4,8 @@ const popupElement = document.querySelector('.popup');
 const popupCloseButtonElement = popupElement.querySelector('.popup__close');
 const popupOpenButtonElement = document.querySelector('.profile__button');
 
-let subtitleName = document.querySelector('.popup__input_subtitle_name');
-let info = document.querySelector('.popup__input_subtitle_info');
+let subtitleName = document.querySelector('.popup__input_subtitle-name');
+let info = document.querySelector('.popup__input_subtitle-info');
 
 let profileName = document.querySelector('.profile__name');
 let profileTitle = document.querySelector('.profile__title');
@@ -26,7 +26,9 @@ popupOpenButtonElement.addEventListener('click', openPopup);
 
 /* ================ добавить данные ===============*/
 
-function addForm() {
+function onSubmit(event) {
+  event.preventDefault();
+
   profileName.textContent = subtitleName.value;
   profileTitle.textContent = info.value;
 
@@ -36,10 +38,5 @@ function addForm() {
   closePopup();
 }
 
-function onSubmit(event) {
-  event.preventDefault();
-  addForm();
-}
-
-const popupContainer = document.querySelector('.popup__container');
+const popupContainer = document.querySelector('.popup__filler');
 popupContainer.addEventListener('submit', onSubmit);

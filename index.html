@@ -19,7 +19,7 @@
       />
     </header>
 
-    <main>
+    <main class="main main_type_pos">
       <!--=============PROFILE===============-->
       <section class="profile profile_type_pos">
         <div class="profile__container">
@@ -33,7 +33,11 @@
             <div class="profile__info-container">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
               <button class="profile__button link" type="button">
-                <img src="./image/Edit_Button.svg" alt="Иконка карандаш" />
+                <img
+                  src="./image/Edit_Button.svg"
+                  alt="Иконка карандаш"
+                  class="profile__button-pencil"
+                />
               </button>
             </div>
             <p class="profile__title">Исследователь океана</p>
@@ -128,25 +132,28 @@
 
       <!--=============POPUP===============-->
       <section class="popup">
-        <form class="popup__container">
+        <div class="popup__filler">
           <button class="popup__close link" type="button"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input
-            class="popup__input popup__input_subtitle_name"
-            name="name"
-            type="text"
-            placeholder="Введите ФИО"
-          />
-          <input
-            class="popup__input popup__input_subtitle_info"
-            name="info"
-            type="text"
-            placeholder="Род деятельности"
-          />
-          <button class="popup__save link" name="save" type="submit">
-            Сохранить
-          </button>
-        </form>
+
+          <form class="popup__container" name="popup">
+            <input
+              class="popup__input popup__input_subtitle-name"
+              name="name"
+              type="text"
+              placeholder="Введите ФИО"
+            />
+            <input
+              class="popup__input popup__input_subtitle-info"
+              name="info"
+              type="text"
+              placeholder="Род деятельности"
+            />
+            <button class="popup__save link" name="save" type="submit">
+              Сохранить
+            </button>
+          </form>
+        </div>
       </section>
     </main>
     <!--=============FOOTER===============-->
