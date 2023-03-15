@@ -2,7 +2,7 @@
     width: 33px;
     height: 33px;
     background: transparent center url(../../../image/Close_Icon.svg);
-    background-size: auto;
+    background-size: contain;
     border: none;
     transition: 0.3s;
     position: absolute;

@@ -8,3 +8,8 @@
     }
 }
 
+@media screen and (max-width: 767px) {
+    .page_type_pos {
+        margin: 0 auto 36px;
+    }
+}

@@ -3,8 +3,11 @@
   padding: 0;
   width: 24px;
   height: 24px;
+  display: flex;
   background-color: rgba(0, 0, 0, 0);
   border: 1px solid #ffffff;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 767px) {

@@ -4,8 +4,8 @@ const popupElement = document.querySelector('.popup');
 const popupCloseButtonElement = popupElement.querySelector('.popup__close');
 const popupOpenButtonElement = document.querySelector('.profile__button');
 
-let subtitleName = document.querySelector('.popup__input_subtitle-name');
-let info = document.querySelector('.popup__input_subtitle-info');
+let subtitleName = document.querySelector('.popup__input_subtitle_name');
+let info = document.querySelector('.popup__input_subtitle_info');
 
 let profileName = document.querySelector('.profile__name');
 let profileTitle = document.querySelector('.profile__title');
@@ -38,5 +38,5 @@ function onSubmit(event) {
   closePopup();
 }
 
-const popupContainer = document.querySelector('.popup__filler');
+const popupContainer = document.querySelector('.popup__container');
 popupContainer.addEventListener('submit', onSubmit);

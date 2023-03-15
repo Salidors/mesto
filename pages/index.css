@@ -3,7 +3,7 @@
 
 @import url(../blocks/page/page.css);
 @import url(../blocks/page/_type/page_type_pos.css);
-@import url(../blocks/main/main_type_pos/main_type_pos.css);
+@import url(../blocks/main/_type/main_type_pos.css);
 
 @import url(../blocks/link/link.css);
 
