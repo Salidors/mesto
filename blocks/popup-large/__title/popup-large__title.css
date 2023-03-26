@@ -1,4 +1,4 @@
-.card__title_large {
+.popup-large__title {
   margin: 10px 0 0;
   font-style: normal;
   font-weight: 400;
@@ -9,7 +9,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .card__title_large {
+  .popup-large__title {
     max-width: 240px;
   }
 }

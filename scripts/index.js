@@ -127,10 +127,10 @@ function addCard(card) {
 
   /* ============== добавляем второй попап ===============*/
   image.addEventListener('click', () => {
-    const largeImage = imagePopup.querySelector('.card__image_large_sam');
+    const largeImage = imagePopup.querySelector('.popup-large__image');
     largeImage.src = image.src;
     largeImage.alt = image.alt;
-    imagePopup.querySelector('.card__title_large').textContent = image.alt;
+    imagePopup.querySelector('.popup-large__title').textContent = image.alt;
     imagePopup.classList.add('popup__image_opened');
   });
 
