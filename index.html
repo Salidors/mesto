@@ -53,115 +53,13 @@
         </button>
       </section>
 
-      <!--=============CARDS===============-->
+      <!--============= CARDS ===============-->
       <section class="cards" aria-label="Фото">
-        <ul class="cards__list">
-          <li class="card">
-            <img
-              class="card__trash link"
-              src="./image/Trash.svg"
-              alt="Иконка удаление карточки"
-            />
-            <img
-              src="./image/kirill-pershin-1088404-unsplash.jpg"
-              alt="Замок в горах"
-              class="card__image"
-            />
-            <div class="card__item">
-              <h2 class="card__title">Карачаевск</h2>
-              <button type="button" class="card__like link"></button>
-            </div>
-          </li>
-
-          <li class="card">
-            <img
-              class="card__trash link"
-              src="./image/Trash.svg"
-              alt="Иконка удаление карточки"
-            />
-            <img
-              src="./image/kirill-pershin-1404681-unsplash.jpg"
-              alt="Долина"
-              class="card__image"
-            />
-            <div class="card__item">
-              <h2 class="card__title">Гора Эльбрус</h2>
-              <button type="button" class="card__like link"></button>
-            </div>
-          </li>
-
-          <li class="card">
-            <img
-              class="card__trash link"
-              src="./image/Trash.svg"
-              alt="Иконка удаление карточки"
-            />
-            <img
-              src="./image/kirill-pershin-1556355-unsplash.jpg"
-              alt="Горная вершина"
-              class="card__image"
-            />
-            <div class="card__item">
-              <h2 class="card__title">Домбай</h2>
-              <button type="button" class="card__like link"></button>
-            </div>
-          </li>
-
-          <li class="card">
-            <img
-              class="card__trash link"
-              src="./image/Trash.svg"
-              alt="Иконка удаление карточки"
-            />
-            <img
-              src="./image/kirill-pershin-1404681-unsplash.jpg"
-              alt="Долина"
-              class="card__image"
-            />
-            <div class="card__item">
-              <h2 class="card__title">Гора Эльбрус</h2>
-              <button type="button" class="card__like link"></button>
-            </div>
-          </li>
-
-          <li class="card">
-            <img
-              class="card__trash link"
-              src="./image/Trash.svg"
-              alt="Иконка удаление карточки"
-            />
-            <img
-              src="./image/kirill-pershin-1556355-unsplash.jpg"
-              alt="Горная вершина"
-              class="card__image"
-            />
-            <div class="card__item link">
-              <h2 class="card__title">Домбай</h2>
-              <button type="button" class="card__like link"></button>
-            </div>
-          </li>
-
-          <li class="card">
-            <img
-              class="card__trash link"
-              src="./image/Trash.svg"
-              alt="Иконка удаление карточки"
-            />
-            <img
-              src="./image/kirill-pershin-1088404-unsplash.jpg"
-              alt="Замок в горах"
-              class="card__image"
-            />
-            <div class="card__item">
-              <h2 class="card__title">Карачаево-Черкессия</h2>
-              <button type="button" class="card__like link"></button>
-            </div>
-          </li>
-        </ul>
+        <ul class="cards__list"></ul>
       </section>
 
-      <!--=============POPUP===============-->
-      <section class="popup">
+      <!--============= POPUP ===============-->
+      <section class="popup" id="formPopup">
         <div class="popup__container">
           <button class="popup__close link" type="button"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
@@ -185,11 +83,36 @@
           </form>
         </div>
       </section>
+
+      <!--================= POPUP - IMAGE ======================= -->
+
+      <section class="popup" id="imagePopup">
+        <div class="popup__container_large_sam">
+          <button class="popup__close link" type="button"></button>
+          <img src="" alt="" class="card__image card__image_large_sam" />
+          <h2 class="card__title item__text card__title_large"></h2>
+        </div>
+      </section>
     </main>
-    <!--=============FOOTER===============-->
+    <!--============== FOOTER =====================-->
     <footer class="footer">
       <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
     </footer>
+    <!--================== TEMPLATE ==============-->
+    <template class="item_template">
+      <li class="card list__item">
+        <img
+          class="card__trash link"
+          src="./image/Trash.svg"
+          alt="Иконка удаление карточки"
+        />
+        <img src="" alt="" class="card__image" />
+        <div class="card__item">
+          <h2 class="card__title item__text"></h2>
+          <button type="button" class="card__like link"></button>
+        </div>
+      </li>
+    </template>
 
     <script src="./scripts/index.js"></script>
   </body>
