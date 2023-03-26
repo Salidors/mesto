@@ -4,29 +4,3 @@
   opacity: 1;
   transition: all 1s;
 }
-
-.popup__container_large_sam {
-  position: relative;
-}
-
-.card__image_large_sam {
-  max-width: 75vw;
-  height: 75vh;
-  border-radius: 0px;
-}
-
-.card__title_large {
-    margin: 10px 0 0;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 1.25;
-  max-width: 291px;
-  height: 12px;
-}
-
-@media screen and (max-width: 767px) {
-  .card__title_large {
-    max-width: 240px;
-  }
-}
