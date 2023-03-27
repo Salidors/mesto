@@ -2,7 +2,7 @@
 //ЭЛЕМЕНТЫ ПОПАПА НА ИЗМЕНЕНИЕ ЛИЧНЫХ ДАННЫХ
 const popupProfile = document.querySelector('#formEditPopup');
 const popupProfileOpenButton = document.querySelector('.profile__button');
-const popupCloseButton = popupProfile.querySelector('.popup__close');
+const buttonClosePopupEditProfile = popupProfile.querySelector('.popup__close');
 const popupProfileForm = popupProfile.querySelector('.popup__filler');
 
 //ЭЛЕМЕНТЫ ПОПАПА НА ДОБАВЛЕНИЕ КАРТИНОК
@@ -15,6 +15,8 @@ const popupNewImageInfo = popupNewImage.querySelector('.popup__input_subtitle_in
 
 //ДЕМОНСТРАЦИЯ ИЗОБРАЖЕНИЯ
 const popupImage = document.querySelector('#formImagePopup');
+const largeImage = popupImage.querySelector('.popup-large__image');
+const popupImageTitle = popupImage.querySelector('.popup-large__title');
 const popupImageCloseButton = popupImage.querySelector('.popup__close');
 
 //ОБЩИЕ ДЛЯ ПОПАП С ДОБАВЛЕНИЕМ ИНФЫ
@@ -54,7 +56,7 @@ popupNewImageOpenButton.addEventListener('click', () => {
 });
 
 /*========== Событие на закрытие попап ==============*/
-popupCloseButton.addEventListener('click', () => {
+buttonClosePopupEditProfile.addEventListener('click', () => {
   closePopup(popupProfile);
 });
 
@@ -72,53 +74,19 @@ popupProfileForm.addEventListener('submit', (event) => {
   profileName.textContent = subtitleName.value;
   profileTitle.textContent = info.value;
 
-  subtitleName.value = '';
-  info.value = '';
-
   submitForm(event, popupProfile);
 });
 
 // для попап изображения
 popupNewImageForm.addEventListener('submit', (event) => {
-  const card = {
-    name: popupNewImageName.value,
-    link: popupNewImageInfo.value,
-  };
+  const card = createCard();
   addCard(card);
-  popupNewImageName.value = '';
-  popupNewImageInfo.value = '';
 
   submitForm(event, popupNewImage);
+  popupNewImageForm.reset();
 });
 
 /*================= добавить карточки =================*/
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-  },
-];
-
 function addCards() {
   initialCards.forEach((card) => {
     addCard(card);
@@ -126,6 +94,13 @@ function addCards() {
 }
 
 /*================ разбиваем массив на элементы ==============*/
+function createCard() {
+  return {
+    name: popupNewImageName.value,
+    link: popupNewImageInfo.value,
+  };
+}
+
 function addCard(card) {
   const { link, name } = card;
   const clonedCardTemplate = cardTemplate.cloneNode(true);
@@ -137,10 +112,9 @@ function addCard(card) {
 
   /* ============== добавляем второй попап ===============*/
   image.addEventListener('click', () => {
-    const largeImage = popupImage.querySelector('.popup-large__image');
     largeImage.src = image.src;
     largeImage.alt = image.alt;
-    popupImage.querySelector('.popup-large__title').textContent = image.alt;
+    popupImageTitle.textContent = image.alt;
     openPopup(popupImage);
   });
 
