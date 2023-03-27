@@ -9,6 +9,7 @@
   </head>
 
   <body class="page page_type_pos">
+    
     <!--============= HEADER ===============-->
     <header class="header">
       <img
@@ -19,6 +20,7 @@
     </header>
 
     <main class="main main_type_pos">
+
       <!--============= PROFILE ===============-->
       <section class="profile profile_type_pos">
         <div class="profile__container">
@@ -57,8 +59,8 @@
         <ul class="cards__list"></ul>
       </section>
 
-      <!--============= POPUP ===============-->
-      <section class="popup" id="formPopup">
+      <!--============= POPUP-1 ===============-->
+      <section class="popup" id="formEditPopup">
         <div class="popup__container">
           <button class="popup__close link" type="button"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
@@ -83,20 +85,47 @@
         </div>
       </section>
 
-      <!--================= POPUP-IMAGE ======================= -->
+      <!--================= POPUP-2 ====================-->
+       <section class="popup" id="formAddPopup">
+        <div class="popup__container">
+          <button class="popup__close link" type="button"></button>
+          <h2 class="popup__title">Новое место</h2>
 
-      <section class="popup popup-large" id="imagePopup">
+          <form class="popup__filler" name="popup">
+            <input
+              class="popup__input popup__input_subtitle_name"
+              name="name"
+              type="text"
+              placeholder="Название"
+            />
+            <input
+              class="popup__input popup__input_subtitle_info"
+              name="info"
+              type="text"
+              placeholder="Ссылка на картинку"
+            />
+            <button class="popup__save link" name="save" type="submit">
+              Создать
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!--================= POPUP-IMAGE ======================= -->
+      <section class="popup popup-large" id="formImagePopup">
         <div class="popup-large__container">
           <button class="popup__close link" type="button"></button>
-          <img src="#" alt="" class="popup-large__image" />
+          <img src="#" alt="" class="popup-large__image"/>
           <h2 class="popup-large__title"></h2>
         </div>
       </section>
     </main>
+
     <!--============== FOOTER =====================-->
     <footer class="footer">
       <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
     </footer>
+
     <!--================== TEMPLATE ==============-->
     <template class="item_template">
       <li class="card list__item">
