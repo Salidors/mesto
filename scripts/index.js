@@ -1,62 +1,33 @@
 /*============== глобальные константы ==================*/
-
+//ЭЛЕМЕНТЫ ПОПАПА НА ИЗМЕНЕНИЕ ЛИЧНЫХ ДАННЫХ
 const popupProfile = document.querySelector('#formEditPopup');
 const popupProfileOpenButton = document.querySelector('.profile__button');
 const popupCloseButton = popupProfile.querySelector('.popup__close');
 const popupProfileForm = popupProfile.querySelector('.popup__filler');
 
+//ЭЛЕМЕНТЫ ПОПАПА НА ДОБАВЛЕНИЕ КАРТИНОК
 const popupNewImage = document.querySelector('#formAddPopup');
 const popupNewImageOpenButton = document.querySelector('.profile__add-button');
 const popupNewImageCloseButton = popupNewImage.querySelector('.popup__close');
 const popupNewImageForm = popupNewImage.querySelector('.popup__filler');
-const popupNewImageName = popupNewImage.querySelector(
-  '.popup__input_subtitle_name'
-);
-const popupNewImageInfo = popupNewImage.querySelector(
-  '.popup__input_subtitle_info'
-);
+const popupNewImageName = popupNewImage.querySelector('.popup__input_subtitle_name');
+const popupNewImageInfo = popupNewImage.querySelector('.popup__input_subtitle_info');
 
+//ДЕМОНСТРАЦИЯ ИЗОБРАЖЕНИЯ
 const popupImage = document.querySelector('#formImagePopup');
 const popupImageCloseButton = popupImage.querySelector('.popup__close');
 
-const popupTitle = document.querySelector('.popup__title');
-const popupSubtitleName = document.querySelector('.popup__input_subtitle_name');
-const popupSubtitleInfo = document.querySelector('.popup__input_subtitle_info');
-const popupSaveButton = document.querySelector('.popup__save');
-
+//ОБЩИЕ ДЛЯ ПОПАП С ДОБАВЛЕНИЕМ ИНФЫ
 const subtitleName = document.querySelector('.popup__input_subtitle_name');
 const info = document.querySelector('.popup__input_subtitle_info');
-
 const profileName = document.querySelector('.profile__name');
 const profileTitle = document.querySelector('.profile__title');
 
+// ДЛЯ КАРТОЧЕК
 const cardList = document.querySelector('.cards__list');
 const cardTemplate = document.querySelector('.item_template').content;
 
 /*============ открыть и закрыть попап ============*/
-// const closePopup = function () {
-//   popupEditElement.classList.add('popup_opened_disappears_form');
-//   popupEditElement.classList.remove('popup_opened');
-// };
-let popupName = '';
-// const openPopup = function (event) {
-//   if (event.currentTarget.classList.contains('profile__button')) {
-//     popupSubtitleName.placeholder = 'Введите ФИО';
-//     popupSubtitleInfo.placeholder = 'Род деятельности';
-//     subtitleName.value = profileName.textContent;
-//     info.value = profileTitle.textContent;
-//     popupTitle.textContent = 'Редактировать профиль';
-//     popupSaveButton.textContent = 'Сохранить';
-//     popupName = 'profile';
-//   } else if (event.currentTarget.classList.contains('profile__add-button')) {
-//     subtitleName.value = '';
-//     info.value = '';
-//     popupName = 'card';
-//   }
-
-//   popupEditElement.classList.add('popup_opened');
-// };
-
 const openPopup = function (popup) {
   popup.classList.add('popup_opened');
 };
@@ -65,6 +36,13 @@ const closePopup = function (popup) {
   popup.classList.remove('popup_opened');
 };
 
+/*====================== Submit popup form ================*/
+const submitForm = function (event, popup) {
+  event.preventDefault();
+  closePopup(popup);
+};
+
+/*========== Событие на открытие попапов ==============*/
 popupProfileOpenButton.addEventListener('click', () => {
   subtitleName.value = profileName.textContent;
   info.value = profileTitle.textContent;
@@ -75,6 +53,7 @@ popupNewImageOpenButton.addEventListener('click', () => {
   openPopup(popupNewImage);
 });
 
+/*========== Событие на закрытие попап ==============*/
 popupCloseButton.addEventListener('click', () => {
   closePopup(popupProfile);
 });
@@ -87,11 +66,8 @@ popupImageCloseButton.addEventListener('click', () => {
   closePopup(popupImage);
 });
 
-const submitForm = function (event, popup) {
-  event.preventDefault();
-  closePopup(popup);
-};
-
+/*==================== Настройка работы форм ===============*/
+// для попап с добавлением информации
 popupProfileForm.addEventListener('submit', (event) => {
   profileName.textContent = subtitleName.value;
   profileTitle.textContent = info.value;
@@ -102,6 +78,7 @@ popupProfileForm.addEventListener('submit', (event) => {
   submitForm(event, popupProfile);
 });
 
+// для попап изображения
 popupNewImageForm.addEventListener('submit', (event) => {
   const card = {
     name: popupNewImageName.value,
@@ -114,8 +91,7 @@ popupNewImageForm.addEventListener('submit', (event) => {
   submitForm(event, popupNewImage);
 });
 
-/* ================= добавить карточки =================*/
-
+/*================= добавить карточки =================*/
 const initialCards = [
   {
     name: 'Архыз',
@@ -154,7 +130,7 @@ function addCard(card) {
   const { link, name } = card;
   const clonedCardTemplate = cardTemplate.cloneNode(true);
 
-  /*======== прописываем каждому элементу отдельное значение=====*/
+  /*======== прописываем каждому элементу отдельное значение =====*/
   const image = clonedCardTemplate.querySelector('.card__image');
   image.src = link;
   image.alt = name;
@@ -184,5 +160,6 @@ function addCard(card) {
 
   cardList.prepend(clonedCardTemplate);
 }
-/*============добавим событие после загрузки страницы====*/
+
+/*============ добавим событие после загрузки страницы ====*/
 document.addEventListener('DOMContentLoaded', addCards);
