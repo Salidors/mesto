@@ -10,8 +10,12 @@ const popupNewImage = document.querySelector('#formAddPopup');
 const popupNewImageOpenButton = document.querySelector('.profile__add-button');
 const popupNewImageCloseButton = popupNewImage.querySelector('.popup__close');
 const popupNewImageForm = popupNewImage.querySelector('.popup__filler');
-const popupNewImageName = popupNewImage.querySelector('.popup__input_subtitle_name');
-const popupNewImageInfo = popupNewImage.querySelector('.popup__input_subtitle_info');
+const popupNewImageName = popupNewImage.querySelector(
+  '.popup__input_subtitle_name'
+);
+const popupNewImageInfo = popupNewImage.querySelector(
+  '.popup__input_subtitle_info'
+);
 
 //ДЕМОНСТРАЦИЯ ИЗОБРАЖЕНИЯ
 const popupImage = document.querySelector('#formImagePopup');
@@ -79,8 +83,10 @@ popupProfileForm.addEventListener('submit', (event) => {
 
 // для попап изображения
 popupNewImageForm.addEventListener('submit', (event) => {
-  const card = createCard();
-  addCard(card);
+  addCard({
+    name: popupNewImageName.value,
+    link: popupNewImageInfo.value,
+  });
 
   submitForm(event, popupNewImage);
   popupNewImageForm.reset();
@@ -94,14 +100,7 @@ function addCards() {
 }
 
 /*================ разбиваем массив на элементы ==============*/
-function createCard() {
-  return {
-    name: popupNewImageName.value,
-    link: popupNewImageInfo.value,
-  };
-}
-
-function addCard(card) {
+function createCard(card) {
   const { link, name } = card;
   const clonedCardTemplate = cardTemplate.cloneNode(true);
 
@@ -128,11 +127,16 @@ function addCard(card) {
 
   /*================ ставим лайк ==================*/
   const likeIcon = clonedCardTemplate.querySelector('.card__like');
-  likeIcon.addEventListener('click', (event) => {
+  likeIcon.addEventListener('click', () => {
     likeIcon.classList.toggle('card__like_black_hard');
   });
+  return clonedCardTemplate;
+}
 
-  cardList.prepend(clonedCardTemplate);
+function addCard(cardData) {
+  const card = createCard(cardData);
+
+  cardList.prepend(card);
 }
 
 /*============ добавим событие после загрузки страницы ====*/
