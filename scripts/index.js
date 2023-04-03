@@ -143,13 +143,22 @@ function addCard(cardData) {
 document.addEventListener('DOMContentLoaded', addCards);
 
 /*================= закрываем попап при клике по пустому месту =============*/
-const closePopupByClickOnOverlay = function (event) {
-  if (event.target === event.currentTarget) {
-    closePopup();
-  }
-};
 
-popupCloseButtonElement.addEventListener('click', closePopup);
-popupOpenButtonElement.addEventListener('click', openPopup);
+document.querySelectorAll('.popup').forEach((element) => {
+  element.addEventListener('click', (event) => {
+    if (event.target === event.currentTarget) {
+      closePopup(element);
+    }
+  });
+});
 
-popupElement.addEventListener('click', closePopupByClickOnOverlay);
+// const closePopupByClickOnOverlay = function (event) {
+//   if (event.target === event.currentTarget) {
+//     closePopup();
+//   }
+// };
+
+// buttonClosePopupEditProfile.addEventListener('click', closePopup);
+// popupProfileOpenButton.addEventListener('click', openPopup);
+
+// popupProfile.addEventListener('click', closePopupByClickOnOverlay);
