@@ -141,3 +141,15 @@ function addCard(cardData) {
 
 /*============ добавим событие после загрузки страницы ====*/
 document.addEventListener('DOMContentLoaded', addCards);
+
+/*================= закрываем попап при клике по пустому месту =============*/
+const closePopupByClickOnOverlay = function (event) {
+  if (event.target === event.currentTarget) {
+    closePopup();
+  }
+};
+
+popupCloseButtonElement.addEventListener('click', closePopup);
+popupOpenButtonElement.addEventListener('click', openPopup);
+
+popupElement.addEventListener('click', closePopupByClickOnOverlay);
