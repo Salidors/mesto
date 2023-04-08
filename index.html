@@ -9,7 +9,6 @@
   </head>
 
   <body class="page page_type_pos">
-
     <!--============= HEADER ===============-->
     <header class="header">
       <img
@@ -20,7 +19,6 @@
     </header>
 
     <main class="main main_type_pos">
-
       <!--============= PROFILE ===============-->
       <section class="profile profile_type_pos">
         <div class="profile__container">
@@ -70,17 +68,19 @@
               class="popup__input popup__input_subtitle_name"
               name="name"
               type="text"
-              required
               placeholder="Введите ФИО"
+              required
             />
+            <span id="name-edit-error" class="error"></span>
             <input
               class="popup__input popup__input_subtitle_info"
               name="info"
               type="text"
-              required
               placeholder="Род деятельности"
+              required
             />
-            <button class="popup__save link" name="save" type="submit">
+            <span id="info-edit-error" class="error"></span>
+            <button class="popup__save popup__button link" disabled name="save" type="submit">
               Сохранить
             </button>
           </form>
@@ -88,7 +88,7 @@
       </section>
 
       <!--================= POPUP-2 ====================-->
-       <section class="popup" id="formAddPopup">
+      <section class="popup" id="formAddPopup">
         <div class="popup__container">
           <button class="popup__close link" type="button"></button>
           <h2 class="popup__title">Новое место</h2>
@@ -101,14 +101,16 @@
               placeholder="Название"
               required
             />
+            <span id="name-card-error" class="error"></span>
             <input
               class="popup__input popup__input_subtitle_info"
               name="info"
-              type="text"
+              type="url"
               placeholder="Ссылка на картинку"
               required
             />
-            <button class="popup__save link" name="save" type="submit">
+            <span id="link-card-error" class="error"></span>
+            <button class="popup__save popup__button link" disabled name="save" type="submit">
               Создать
             </button>
           </form>
@@ -119,7 +121,7 @@
       <section class="popup popup-large" id="formImagePopup">
         <div class="popup-large__container">
           <button class="popup__close link" type="button"></button>
-          <img src="#" alt="" class="popup-large__image"/>
+          <img src="#" alt="" class="popup-large__image" />
           <h2 class="popup-large__title"></h2>
         </div>
       </section>
@@ -148,5 +150,6 @@
 
     <script src="./scripts/constants.js"></script>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>

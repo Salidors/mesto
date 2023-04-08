@@ -151,14 +151,3 @@ document.querySelectorAll('.popup').forEach((element) => {
     }
   });
 });
-
-// const closePopupByClickOnOverlay = function (event) {
-//   if (event.target === event.currentTarget) {
-//     closePopup();
-//   }
-// };
-
-// buttonClosePopupEditProfile.addEventListener('click', closePopup);
-// popupProfileOpenButton.addEventListener('click', openPopup);
-
-// popupProfile.addEventListener('click', closePopupByClickOnOverlay);
