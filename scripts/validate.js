@@ -12,7 +12,7 @@ const enableValidation = (config) => {
 // ============== валидация инпутов
 const setEventListeners = (formToValidate, config) => {
   const inputs = formToValidate.querySelectorAll(config.inputSelector);
-  
+
   inputs.forEach((input) => {
     input.addEventListener('input', () => {
       checkFormValidity(formToValidate, config);
@@ -44,6 +44,7 @@ const checkInputValidity = (input, { inputErrorClass }) => {
     input.classList.add(inputErrorClass); //добавить класс
   }
 };
+// ============ проверка формы на валидацию
 const checkFormValidity = (
   form,
   { errorClass, submitButtonSelector, inactiveButtonClass }
@@ -57,31 +58,3 @@ const checkFormValidity = (
     button.classList.add(inactiveButtonClass);
   }
 };
-
-// const hasInvalidInput = (formInputs) => {
-//   return formInputs.some((item) => item.validity.valid);
-// };
-
-// const enableButton = () => {
-//   button.claslist.remove('popup__button-invalid');
-//   button.claslist.add('popup__button-valid');
-//   button.setAtribute('disabled', true);
-// };
-
-// const disableButton = () => {
-//   button.claslist.remove('popup__button-valid');
-//   button.claslist.add('popup__button-invalid');
-//   button.setAtribute('disabled');
-// };
-
-// enableValidation(validationConfig);
-
-// form.addEventListener('submit', (evt) => {
-//   evt.preventDefault();
-// });
-//   setEventListeners();
-// const formInputs = Array.form(form.querySelectorAll('popup__input'))
-
-// formInputs.forEach(input => {
-//add
-// })
