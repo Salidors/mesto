@@ -66,21 +66,25 @@
           <form class="popup__filler" name="popup">
             <input
               class="popup__input popup__input_subtitle_name"
-              name="name"
+              name="name-edit"
               type="text"
               placeholder="Введите ФИО"
               required
+              minlength="2"
+              maxlength="40"
             />
-            <span id="name-edit-error" class="error"></span>
+            <span id="name-edit-error" class="popup__error"></span>
             <input
               class="popup__input popup__input_subtitle_info"
-              name="info"
+              name="info-edit"
               type="text"
               placeholder="Род деятельности"
               required
+              minlength="2"
+              maxlength="200"
             />
-            <span id="info-edit-error" class="error"></span>
-            <button class="popup__save popup__button link" disabled name="save" type="submit">
+            <span id="info-edit-error" class="popup__error"></span>
+            <button class="popup__save popup__button link" name="save" type="submit">
               Сохранить
             </button>
           </form>
@@ -96,21 +100,23 @@
           <form class="popup__filler" name="popup">
             <input
               class="popup__input popup__input_subtitle_name"
-              name="name"
+              name="name-card"
               type="text"
               placeholder="Название"
               required
+              minlength="2"
+              maxlength="30"
             />
-            <span id="name-card-error" class="error"></span>
+            <span id="name-card-error" class="popup__error"></span>
             <input
               class="popup__input popup__input_subtitle_info"
-              name="info"
+              name="link-card"
               type="url"
               placeholder="Ссылка на картинку"
               required
             />
-            <span id="link-card-error" class="error"></span>
-            <button class="popup__save popup__button link" disabled name="save" type="submit">
+            <span id="link-card-error" class="popup__error"></span>
+            <button class="popup__save popup__button link popup__button_disabled" name="save" type="submit">
               Создать
             </button>
           </form>

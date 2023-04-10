@@ -1,26 +1,22 @@
-const enableValidation = ({
-  formSelector,
-  inputSelector,
-  submitButtonSelector,
-  inactiveButtonClass,
-  inputErrorClass,
-  errorClass,
-}) => {
-  const forms = document.querySelectorAll(formSelector);
+// ============= убираем изначальныое поведение кнопки
+const enableValidation = (config) => {
+  const forms = document.querySelectorAll(config.formSelector);
   forms.forEach((form) => {
     form.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
-    setEventListeners(form, inputSelector);
+    setEventListeners(form, config);
   });
 };
 
-const setEventListeners = (formToValidate, inputSelector) => {
-  const formInputs = formToValidate.querySelectorAll(inputSelector);
-
-  formInputs.forEach((input) => {
-    input.addEventListener('input', (evt) => {
-    checkInputValidity(input);
+// ============== валидация инпутов
+const setEventListeners = (formToValidate, config) => {
+  const inputs = formToValidate.querySelectorAll(config.inputSelector);
+  
+  inputs.forEach((input) => {
+    input.addEventListener('input', () => {
+      checkFormValidity(formToValidate, config);
+      checkInputValidity(input, config);
     });
   });
 };
@@ -34,17 +30,33 @@ enableValidation({
   errorClass: 'popup__error_visible',
 });
 
-// const checkInputValidity = (input) => {
-//   const currentInputErrorContainer = document.querySelector(
-//     `#$(name-edit-error)-error`
-//   );
-//   console.log(currentInputErrorContainer);
-//   if (input.checkValidity()) {
-//     currentInputErrorContainer.textContent = '';
-//   } else {
-//     currentInputErrorContainer.textContent = input.validationMassage;
-//   }
-// };
+// ============== поведение инпутов
+const checkInputValidity = (input, { inputErrorClass }) => {
+  const currentInputErrorContainer = document.querySelector(
+    `#${input.name}-error` //поиск необходимого инпута путем прибавления поля name к error
+  );
+  //сравнение полей
+  if (input.checkValidity()) {
+    currentInputErrorContainer.textContent = ''; // если все хорошо - оставить пустым
+    input.classList.remove(inputErrorClass); //снять класс
+  } else {
+    currentInputErrorContainer.textContent = input.validationMessage; //добавить текст ошибки
+    input.classList.add(inputErrorClass); //добавить класс
+  }
+};
+const checkFormValidity = (
+  form,
+  { errorClass, submitButtonSelector, inactiveButtonClass }
+) => {
+  const button = form.querySelector(submitButtonSelector);
+  if (form.checkValidity()) {
+    form.parentNode.classList.remove(errorClass);
+    button.classList.remove(inactiveButtonClass);
+  } else {
+    form.parentNode.classList.add(errorClass);
+    button.classList.add(inactiveButtonClass);
+  }
+};
 
 // const hasInvalidInput = (formInputs) => {
 //   return formInputs.some((item) => item.validity.valid);
