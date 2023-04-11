@@ -142,12 +142,17 @@ function addCard(cardData) {
 /*============ добавим событие после загрузки страницы ====*/
 document.addEventListener('DOMContentLoaded', addCards);
 
-/*================= закрываем попап при клике по пустому месту =============*/
-
-document.querySelectorAll('.popup').forEach((element) => {
+/*================= закрываем попап при клике по пустому месту и Esc =============*/
+document.querySelectorAll('.overlay').forEach((element) => {
   element.addEventListener('click', (event) => {
     if (event.target === event.currentTarget) {
-      closePopup(element);
+      closePopup(element.parentNode);
+    }
+  });
+  
+  document.addEventListener('keyup', (event) => {
+    if (event.code === 'Escape') {
+      closePopup(element.parentNode);
     }
   });
 });
