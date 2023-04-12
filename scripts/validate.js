@@ -1,3 +1,4 @@
+
 // ============= убираем изначальныое поведение кнопки
 const enableValidation = (config) => {
   const forms = document.querySelectorAll(config.formSelector);
@@ -21,14 +22,7 @@ const setEventListeners = (formToValidate, config) => {
   });
 };
 
-enableValidation({
-  formSelector: '.popup__filler',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible',
-});
+enableValidation(validationConfig);
 
 // ============== поведение инпутов
 const checkInputValidity = (input, { inputErrorClass }) => {

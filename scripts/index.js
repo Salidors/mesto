@@ -149,10 +149,11 @@ document.querySelectorAll('.overlay').forEach((element) => {
       closePopup(element.parentNode);
     }
   });
-  
+
   document.addEventListener('keyup', (event) => {
     if (event.code === 'Escape') {
       closePopup(element.parentNode);
     }
   });
 });
+
