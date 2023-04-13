@@ -34,12 +34,31 @@ const cardList = document.querySelector('.cards__list');
 const cardTemplate = document.querySelector('.item_template').content;
 
 /*============ открыть и закрыть попап ============*/
+let handleEscClose;
+let handleClickClose;
 const openPopup = function (popup) {
   popup.classList.add('popup_opened');
+
+  handleEscClose = function (event) {
+    console.log({ event });
+    if (event.code === 'Escape') {
+      closePopup(popup);
+    }
+  };
+  document.addEventListener('keyup', handleEscClose);
+
+  handleClickClose = function (event) {
+    if (event.target === event.currentTarget) {
+      closePopup(popup);
+    }
+  };
+  popup.addEventListener('click', handleClickClose);
 };
 
 const closePopup = function (popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keyup', handleEscClose);
+  popup.removeEventListener('click', handleClickClose);
 };
 
 /*====================== Submit popup form ================*/
@@ -52,12 +71,17 @@ const submitForm = function (event, popup) {
 popupProfileOpenButton.addEventListener('click', () => {
   subtitleName.value = profileName.textContent;
   info.value = profileTitle.textContent;
+  disableSubmitButton(popupProfile.querySelector('.popup__save'));
   openPopup(popupProfile);
 });
 
 popupNewImageOpenButton.addEventListener('click', () => {
+  disableSubmitButton(popupNewImage.querySelector('.popup__save'));
   openPopup(popupNewImage);
 });
+const disableSubmitButton = function (button) {
+  button.classList.add('popup__button_disabled');
+};
 
 /*========== Событие на закрытие попап ==============*/
 buttonClosePopupEditProfile.addEventListener('click', () => {
@@ -142,18 +166,8 @@ function addCard(cardData) {
 /*============ добавим событие после загрузки страницы ====*/
 document.addEventListener('DOMContentLoaded', addCards);
 
-/*================= закрываем попап при клике по пустому месту и Esc =============*/
-document.querySelectorAll('.overlay').forEach((element) => {
-  element.addEventListener('click', (event) => {
-    if (event.target === event.currentTarget) {
-      closePopup(element.parentNode);
-    }
-  });
-
-  document.addEventListener('keyup', (event) => {
-    if (event.code === 'Escape') {
-      closePopup(element.parentNode);
-    }
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.popup').forEach((element) => {
+    element.classList.add('popup__animation-on');
   });
 });
-

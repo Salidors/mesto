@@ -1,4 +1,3 @@
-
 // ============= убираем изначальныое поведение кнопки
 const enableValidation = (config) => {
   const forms = document.querySelectorAll(config.formSelector);

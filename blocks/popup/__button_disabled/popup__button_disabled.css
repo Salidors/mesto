@@ -3,7 +3,7 @@
   color: black;
   border: 1px solid #000000;
   opacity: 0.2;
-  cursor: not-allowed;
+  cursor: auto;
 }
 
 .popup__button_disabled:hover {
@@ -11,5 +11,4 @@
   color: black;
   border: 1px solid #000000;
   opacity: 0.2;
-  cursor: none;
 }

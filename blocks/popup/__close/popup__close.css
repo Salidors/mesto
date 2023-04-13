@@ -4,7 +4,6 @@
     background: transparent center url(../../../image/Close_Icon.svg);
     background-size: contain;
     border: none;
-    transition: 0.3s;
     position: absolute;
     top: -41px;
     right: -41px;
