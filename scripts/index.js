@@ -175,6 +175,6 @@ popupNewImageForm.addEventListener('submit', (event) => {
 /*============ добавим событие после загрузки страницы ====*/
 document.addEventListener('DOMContentLoaded', addCards);
 
-document.querySelectorAll('.popup').forEach((element) => {
-  element.classList.add('popup__animation-on');
-});
+// document.querySelectorAll('.popup').forEach((element) => {
+//   element.classList.add('popup__animation-on');
+// });
