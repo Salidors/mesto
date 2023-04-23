@@ -1,3 +1,4 @@
+import Card from './Card.js';
 /*============== глобальные переменные ==================*/
 //ЭЛЕМЕНТЫ ПОПАПА НА ИЗМЕНЕНИЕ ЛИЧНЫХ ДАННЫХ
 const popupProfile = document.querySelector('#formEditPopup');
@@ -75,8 +76,12 @@ const submitForm = function (event, popup) {
 
 /*================= добавить карточки =================*/
 function addCards() {
-  initialCards.forEach((card) => {
-    addCard(card);
+  initialCards.forEach((item) => {
+    // addCard(card);
+    const card = new Card(item, '.card-template_type_default');
+    const cardElement = card.generateCard();
+
+    cardList.prepend(cardElement);
   });
 }
 
@@ -114,7 +119,7 @@ function createCard(card) {
   /*================ ставим лайк ==================*/
   const likeIcon = clonedCardTemplate.querySelector('.card__like');
   likeIcon.addEventListener('click', () => {
-    likeIcon.classList.toggle('card__like_black_hard');
+    likeIcon.classList.toggle('card__like_black_heart');
   });
   return clonedCardTemplate;
 }
