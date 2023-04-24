@@ -32,7 +32,6 @@ const profileTitle = document.querySelector('.profile__title');
 
 // ДЛЯ КАРТОЧЕК
 const cardList = document.querySelector('.cards__list');
-const cardTemplate = document.querySelector('.item_template').content;
 
 /*=============== функции ==============*/
 /*============ открыть и закрыть попап ============*/
@@ -76,12 +75,8 @@ const submitForm = function (event, popup) {
 
 /*================= добавить карточки =================*/
 function addCards() {
-  initialCards.forEach((item) => {
-    // addCard(card);
-    const card = new Card(item, '.card-template_type_default');
-    const cardElement = card.generateCard();
-
-    cardList.prepend(cardElement);
+  initialCards.forEach((card) => {
+    addCard(card);
   });
 }
 
@@ -91,12 +86,13 @@ const disableSubmitButton = function (button) {
 };
 
 /*================ разбиваем массив на элементы ==============*/
-function createCard(card) {
-  const { link, name } = card;
-  const clonedCardTemplate = cardTemplate.cloneNode(true);
+function createCard(item) {
+  const { link, name } = item;
+  const card = new Card(item, '.card-template_type_default');
+  const cardElement = card.generateCard();
 
   /*======== прописываем каждому элементу отдельное значение =====*/
-  const image = clonedCardTemplate.querySelector('.card__image');
+  const image = cardElement.querySelector('.card__image');
   image.src = link;
   image.alt = name;
 
@@ -108,20 +104,20 @@ function createCard(card) {
     openPopup(popupImage);
   });
 
-  clonedCardTemplate.querySelector('.item__text').textContent = name;
+  cardElement.querySelector('.item__text').textContent = name;
 
   /*============= удаление карты УРНА ==============*/
-  const trashIcon = clonedCardTemplate.querySelector('.card__trash');
+  const trashIcon = cardElement.querySelector('.card__trash');
   trashIcon.addEventListener('click', (event) => {
     event.target.parentNode.remove();
   });
 
   /*================ ставим лайк ==================*/
-  const likeIcon = clonedCardTemplate.querySelector('.card__like');
+  const likeIcon = cardElement.querySelector('.card__like');
   likeIcon.addEventListener('click', () => {
     likeIcon.classList.toggle('card__like_black_heart');
   });
-  return clonedCardTemplate;
+  return cardElement;
 }
 
 function addCard(cardData) {
