@@ -1,4 +1,6 @@
 import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+
 /*============== глобальные переменные ==================*/
 //ЭЛЕМЕНТЫ ПОПАПА НА ИЗМЕНЕНИЕ ЛИЧНЫХ ДАННЫХ
 const popupProfile = document.querySelector('#formEditPopup');
@@ -85,7 +87,7 @@ const disableSubmitButton = function (button) {
   button.classList.add('popup__button_disabled');
 };
 
-/*================ разбиваем массив на элементы ==============*/
+/*================ разбиваем массив на элементы создаем экземпляр ==============*/
 function createCard(item) {
   const { link, name } = item;
   const card = new Card(item, '.card-template_type_default');
@@ -117,6 +119,7 @@ function createCard(item) {
   likeIcon.addEventListener('click', () => {
     likeIcon.classList.toggle('card__like_black_heart');
   });
+  
   return cardElement;
 }
 
@@ -175,3 +178,9 @@ popupNewImageForm.addEventListener('submit', (event) => {
 
 /*============ добавим событие после загрузки страницы ====*/
 document.addEventListener('DOMContentLoaded', addCards);
+
+const forms = document.querySelectorAll(validationConfig.formSelector);
+forms.forEach((form) => {
+  const formValidator = new FormValidator(validationConfig, form);
+  formValidator.enableValidation();
+});
