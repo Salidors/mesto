@@ -108,18 +108,6 @@ function createCard(item) {
 
   cardElement.querySelector('.item__text').textContent = name;
 
-  /*============= удаление карты УРНА ==============*/
-  const trashIcon = cardElement.querySelector('.card__trash');
-  trashIcon.addEventListener('click', (event) => {
-    event.target.parentNode.remove();
-  });
-
-  /*================ ставим лайк ==================*/
-  const likeIcon = cardElement.querySelector('.card__like');
-  likeIcon.addEventListener('click', () => {
-    likeIcon.classList.toggle('card__like_black_heart');
-  });
-  
   return cardElement;
 }
 
