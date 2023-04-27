@@ -22,8 +22,6 @@ const popupNewImageInfo = popupNewImage.querySelector(
 
 //ДЕМОНСТРАЦИЯ ИЗОБРАЖЕНИЯ
 const popupImage = document.querySelector('#formImagePopup');
-const largeImage = popupImage.querySelector('.popup-large__image');
-const popupImageTitle = popupImage.querySelector('.popup-large__title');
 const popupImageCloseButton = popupImage.querySelector('.popup__close');
 
 //ОБЩИЕ ДЛЯ ПОПАП С ДОБАВЛЕНИЕМ ИНФЫ
@@ -82,31 +80,15 @@ function addCards() {
   });
 }
 
-/*========== открытие попапов ==============*/
-const disableSubmitButton = function (button) {
-  button.classList.add('popup__button_disabled');
-};
-
 /*================ разбиваем массив на элементы создаем экземпляр ==============*/
 function createCard(item) {
-  const { link, name } = item;
-  const card = new Card(item, '.card-template_type_default');
+  const card = new Card(
+    item,
+    '.card-template_type_default',
+    popupImage,
+    openPopup
+  );
   const cardElement = card.generateCard();
-
-  /*======== прописываем каждому элементу отдельное значение =====*/
-  const image = cardElement.querySelector('.card__image');
-  image.src = link;
-  image.alt = name;
-
-  /* ============== добавляем второй попап ===============*/
-  image.addEventListener('click', () => {
-    largeImage.src = image.src;
-    largeImage.alt = image.alt;
-    popupImageTitle.textContent = image.alt;
-    openPopup(popupImage);
-  });
-
-  cardElement.querySelector('.item__text').textContent = name;
 
   return cardElement;
 }
@@ -122,12 +104,12 @@ function addCard(cardData) {
 popupProfileOpenButton.addEventListener('click', () => {
   subtitleName.value = profileName.textContent;
   info.value = profileTitle.textContent;
-  disableSubmitButton(popupProfile.querySelector('.popup__save'));
+  profileFormValidator.disableSubmitButton();
   openPopup(popupProfile);
 });
 
 popupNewImageOpenButton.addEventListener('click', () => {
-  disableSubmitButton(popupNewImage.querySelector('.popup__save'));
+  cardFormValidator.disableSubmitButton();
   openPopup(popupNewImage);
 });
 
@@ -167,8 +149,12 @@ popupNewImageForm.addEventListener('submit', (event) => {
 /*============ добавим событие после загрузки страницы ====*/
 document.addEventListener('DOMContentLoaded', addCards);
 
-const forms = document.querySelectorAll(validationConfig.formSelector);
-forms.forEach((form) => {
-  const formValidator = new FormValidator(validationConfig, form);
-  formValidator.enableValidation();
-});
+const profileForm = document
+  .querySelector('#formEditPopup')
+  .querySelector('form');
+const profileFormValidator = new FormValidator(validationConfig, profileForm);
+profileFormValidator.enableValidation();
+
+const cardForm = document.querySelector('#formAddPopup').querySelector('form');
+const cardFormValidator = new FormValidator(validationConfig, cardForm);
+cardFormValidator.enableValidation();
