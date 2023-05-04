@@ -1,10 +1,6 @@
 export default class Section {
-    constructor({ items, renderer }, selectorConteiner) {
+  constructor({ items, renderer }, selectorContainer) {}
+  _renderer() {}
 
-    }
-_renderer();
-
-addItem();
-
-
+  addItem() {}
 }

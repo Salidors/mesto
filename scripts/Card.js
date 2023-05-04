@@ -1,15 +1,16 @@
 // ============= создание карточек
 export default class Card {
-  constructor(data, templateSelector, popupImage, openPopup) {
+  constructor(data, templateSelector, popupImage, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._popup = popupImage;
-    this._openPopup = openPopup;
 
     this._templateSelector = templateSelector;
     this._element = this._getTemplate();
 
     this._like = this._element.querySelector('.card__like');
+
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -47,13 +48,7 @@ export default class Card {
   }
 
   _handleOnOpenPopup() {
-    const largeImage = this._popup.querySelector('.popup-large__image');
-    const popupImageTitle = this._popup.querySelector('.popup-large__title');
-
-    largeImage.src = this._link;
-    largeImage.alt = this._name;
-    popupImageTitle.textContent = this._name;
-    this._openPopup(this._popup);
+    this._handleCardClick(this._name, this._link)
   }
 
   _handleLike() {
