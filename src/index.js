@@ -1,7 +1,8 @@
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
-import PopupWithForm from './popupWithForm.js';
-import PopupWithImage from './popupWithImage.js';
+import Card from '../scripts/Card.js';
+import FormValidator from '../scripts/FormValidator.js';
+import PopupWithForm from '../scripts/popupWithForm.js';
+import PopupWithImage from '../scripts/popupWithImage.js';
+import Section from '../scripts/section.js';
 
 /*============== глобальные переменные ==================*/
 //ЭЛЕМЕНТЫ ПОПАПА НА ИЗМЕНЕНИЕ ЛИЧНЫХ ДАННЫХ
@@ -31,49 +32,12 @@ const profileName = document.querySelector('.profile__name');
 const profileTitle = document.querySelector('.profile__title');
 
 // ДЛЯ КАРТОЧЕК
-const cardList = document.querySelector('.cards__list');
 
 /*=============== функции ==============*/
-/*============ открыть и закрыть попап ============*/
-
-// const closePopup = function (popup) {
-//   popup.classList.remove('popup_opened');
-// };
-
-/*====================== Submit popup form ================*/
-// const submitForm = function (event, popup) {
-//   event.preventDefault();
-//   closePopup(popup);
-// };
-
-/*================= добавить карточки =================*/
-function addCards() {
-  initialCards.forEach((card) => {
-    addCard(card);
-  });
-}
 
 /*================ разбиваем массив на элементы создаем экземпляр ==============*/
 const viewImagePopup = new PopupWithImage('#formImagePopup');
 viewImagePopup.setEventListeners();
-
-function createCard(item) {
-  const card = new Card(
-    item,
-    '.card-template_type_default',
-    popupImage,
-    viewImagePopup.open
-  );
-  const cardElement = card.generateCard();
-
-  return cardElement;
-}
-
-function addCard(cardData) {
-  const card = createCard(cardData);
-
-  cardList.prepend(card);
-}
 
 /*=============== обработчики событий ====================*/
 /*========== Событие на открытие попапов ==============*/
@@ -137,7 +101,20 @@ popupNewImageOpenButton.addEventListener('click', () => {
 // });
 
 /*============ добавим событие после загрузки страницы ====*/
-document.addEventListener('DOMContentLoaded', addCards);
+document.addEventListener('DOMContentLoaded', () => {
+  const section = new Section({ initialCards }, '.cards__list');
+
+  initialCards.forEach((item) => {
+    const card = new Card(
+      item,
+      '.card-template_type_default',
+      popupImage,
+      viewImagePopup.open
+    );
+    const cardElement = card.generateCard();
+    section.addItem(cardElement);
+  });
+});
 
 const profileForm = document
   .querySelector('#formEditPopup')
