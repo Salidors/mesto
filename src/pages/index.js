@@ -1,8 +1,9 @@
-import Card from '../scripts/Card.js';
-import FormValidator from '../scripts/FormValidator.js';
-import PopupWithForm from '../scripts/popupWithForm.js';
-import PopupWithImage from '../scripts/popupWithImage.js';
-import Section from '../scripts/section.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import PopupWithForm from '../components/popupWithForm.js';
+import PopupWithImage from '../components/popupWithImage.js';
+import Section from '../components/section.js';
+import './index.css';
 
 /*============== глобальные переменные ==================*/
 //ЭЛЕМЕНТЫ ПОПАПА НА ИЗМЕНЕНИЕ ЛИЧНЫХ ДАННЫХ
