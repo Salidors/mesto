@@ -1,3 +1,4 @@
+import { validationConfig, initialCards } from '../components/constants.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/popupWithForm.js';
@@ -32,10 +33,6 @@ const info = document.querySelector('.popup__input_subtitle_info');
 const profileName = document.querySelector('.profile__name');
 const profileTitle = document.querySelector('.profile__title');
 
-// ДЛЯ КАРТОЧЕК
-
-/*=============== функции ==============*/
-
 /*================ разбиваем массив на элементы создаем экземпляр ==============*/
 const viewImagePopup = new PopupWithImage('#formImagePopup');
 viewImagePopup.setEventListeners();
@@ -55,11 +52,19 @@ popupProfileOpenButton.addEventListener('click', () => {
   profilePopup.open();
 });
 
+const cardSection = new Section({ initialCards }, '.cards__list');
 const addImagePopup = new PopupWithForm('#formAddPopup', () => {
-  addCard({
-    name: popupNewImageName.value,
-    link: popupNewImageInfo.value,
-  });
+  const card = new Card(
+    {
+      name: popupNewImageName.value,
+      link: popupNewImageInfo.value,
+    },
+    '.card-template_type_default',
+    popupImage,
+    viewImagePopup.open
+  );
+  const cardElement = card.generateCard();
+  cardSection.addItem(cardElement);
 });
 addImagePopup.setEventListeners();
 
@@ -68,43 +73,8 @@ popupNewImageOpenButton.addEventListener('click', () => {
   addImagePopup.open();
 });
 
-/*========== Событие на закрытие попап ==============*/
-// buttonClosePopupEditProfile.addEventListener('click', () => {
-//   closePopup(popupProfile);
-// });
-
-// popupNewImageCloseButton.addEventListener('click', () => {
-//   closePopup(popupNewImage);
-// });
-
-// popupImageCloseButton.addEventListener('click', () => {
-//   closePopup(popupImage);
-// });
-
-/*==================== Настройка работы форм ===============*/
-// для попап с добавлением информации
-// popupProfileForm.addEventListener('submit', (event) => {
-//   profileName.textContent = subtitleName.value;
-//   profileTitle.textContent = info.value;
-
-//   submitForm(event, popupProfile);
-// });
-
-// для попап изображения
-// popupNewImageForm.addEventListener('submit', (event) => {
-//   addCard({
-//     name: popupNewImageName.value,
-//     link: popupNewImageInfo.value,
-//   });
-
-//   submitForm(event, popupNewImage);
-//   popupNewImageForm.reset();
-// });
-
 /*============ добавим событие после загрузки страницы ====*/
 document.addEventListener('DOMContentLoaded', () => {
-  const section = new Section({ initialCards }, '.cards__list');
-
   initialCards.forEach((item) => {
     const card = new Card(
       item,
@@ -113,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
       viewImagePopup.open
     );
     const cardElement = card.generateCard();
-    section.addItem(cardElement);
+    cardSection.addItem(cardElement);
   });
 });
 
