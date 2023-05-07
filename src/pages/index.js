@@ -53,7 +53,7 @@ popupProfileOpenButton.addEventListener('click', () => {
 });
 
 const cardSection = new Section({ initialCards }, '.cards__list');
-const addImagePopup = new PopupWithForm('#formAddPopup', () => {
+const popupAddCard = new PopupWithForm('#formAddPopup', () => {
   const card = new Card(
     {
       name: popupNewImageName.value,
@@ -66,11 +66,11 @@ const addImagePopup = new PopupWithForm('#formAddPopup', () => {
   const cardElement = card.generateCard();
   cardSection.addItem(cardElement);
 });
-addImagePopup.setEventListeners();
+popupAddCard.setEventListeners();
 
 popupNewImageOpenButton.addEventListener('click', () => {
   cardFormValidator.disableSubmitButton();
-  addImagePopup.open();
+  popupAddCard.open();
 });
 
 /*============ добавим событие после загрузки страницы ====*/
