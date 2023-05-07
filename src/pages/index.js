@@ -4,6 +4,7 @@ import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/popupWithForm.js';
 import PopupWithImage from '../components/popupWithImage.js';
 import Section from '../components/section.js';
+import UserInfo from '../components/userInfo.js';
 import './index.css';
 
 /*============== глобальные переменные ==================*/
@@ -12,14 +13,7 @@ const popupProfileOpenButton = document.querySelector('.profile__button');
 // const buttonClosePopupEditProfile = popupProfile.querySelector('.popup__close');
 
 //ЭЛЕМЕНТЫ ПОПАПА НА ДОБАВЛЕНИЕ КАРТИНОК
-const popupNewImage = document.querySelector('#formAddPopup');
 const popupNewImageOpenButton = document.querySelector('.profile__add-button');
-const popupNewImageName = popupNewImage.querySelector(
-  '.popup__input_subtitle_name'
-);
-const popupNewImageInfo = popupNewImage.querySelector(
-  '.popup__input_subtitle_info'
-);
 
 //ДЕМОНСТРАЦИЯ ИЗОБРАЖЕНИЯ
 const popupImage = document.querySelector('#formImagePopup');
@@ -27,10 +21,12 @@ const popupImage = document.querySelector('#formImagePopup');
 
 //ОБЩИЕ ДЛЯ ПОПАП С ДОБАВЛЕНИЕМ ИНФЫ
 const subtitleName = document.querySelector('.popup__input_subtitle_name');
-const info = document.querySelector('.popup__input_subtitle_info');
-const profileName = document.querySelector('.profile__name');
-const profileTitle = document.querySelector('.profile__title');
+const subtitleInfo = document.querySelector('.popup__input_subtitle_info');
 
+const userInfo = new UserInfo({
+  selectorName: '.profile__name',
+  selectorInfo: '.profile__title',
+});
 /*================ разбиваем массив на элементы создаем экземпляр ==============*/
 const viewImagePopup = new PopupWithImage('#formImagePopup');
 viewImagePopup.setEventListeners();
@@ -38,14 +34,15 @@ viewImagePopup.setEventListeners();
 /*=============== обработчики событий ====================*/
 /*========== Событие на открытие попапов ==============*/
 const profilePopup = new PopupWithForm('#formEditPopup', (args) => {
-  profileName.textContent = args[0];
-  profileTitle.textContent = args[1];
+  userInfo.setUserInfo(args[0], args[1]);
 });
 profilePopup.setEventListeners();
 
 popupProfileOpenButton.addEventListener('click', () => {
-  subtitleName.value = profileName.textContent;
-  info.value = profileTitle.textContent;
+  const { name, info } = userInfo.getUserInfo();
+
+  subtitleName.value = name;
+  subtitleInfo.value = info;
   profileFormValidator.disableSubmitButton();
   profilePopup.open();
 });
@@ -55,16 +52,20 @@ const createCard = (data) => {
     data,
     '.card-template_type_default',
     popupImage,
-    viewImagePopup.open
+    viewImagePopup.open.bind(viewImagePopup)
   );
 
   return card.generateCard();
 };
-const cardSection = new Section({ initialCards }, '.cards__list');
-const popupAddCard = new PopupWithForm('#formAddPopup', () => {
+const cardSection = new Section(
+  { items: initialCards, renderer: createCard },
+  '.cards__list'
+);
+
+const popupAddCard = new PopupWithForm('#formAddPopup', (args) => {
   const cardElement = createCard({
-    name: popupNewImageName.value,
-    link: popupNewImageInfo.value,
+    name: args[0],
+    link: args[1],
   });
   cardSection.addItem(cardElement);
 });
@@ -77,10 +78,7 @@ popupNewImageOpenButton.addEventListener('click', () => {
 
 /*============ добавим событие после загрузки страницы ====*/
 document.addEventListener('DOMContentLoaded', () => {
-  initialCards.forEach((item) => {
-    const cardElement = createCard(item);
-    cardSection.addItem(cardElement);
-  });
+  cardSection.renderItems();
 });
 
 const profileForm = document
