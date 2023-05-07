@@ -8,10 +8,8 @@ import './index.css';
 
 /*============== глобальные переменные ==================*/
 //ЭЛЕМЕНТЫ ПОПАПА НА ИЗМЕНЕНИЕ ЛИЧНЫХ ДАННЫХ
-const popupProfile = document.querySelector('#formEditPopup');
 const popupProfileOpenButton = document.querySelector('.profile__button');
 // const buttonClosePopupEditProfile = popupProfile.querySelector('.popup__close');
-const popupProfileForm = popupProfile.querySelector('.popup__filler');
 
 //ЭЛЕМЕНТЫ ПОПАПА НА ДОБАВЛЕНИЕ КАРТИНОК
 const popupNewImage = document.querySelector('#formAddPopup');
@@ -52,18 +50,22 @@ popupProfileOpenButton.addEventListener('click', () => {
   profilePopup.open();
 });
 
-const cardSection = new Section({ initialCards }, '.cards__list');
-const popupAddCard = new PopupWithForm('#formAddPopup', () => {
+const createCard = (data) => {
   const card = new Card(
-    {
-      name: popupNewImageName.value,
-      link: popupNewImageInfo.value,
-    },
+    data,
     '.card-template_type_default',
     popupImage,
     viewImagePopup.open
   );
-  const cardElement = card.generateCard();
+
+  return card.generateCard();
+};
+const cardSection = new Section({ initialCards }, '.cards__list');
+const popupAddCard = new PopupWithForm('#formAddPopup', () => {
+  const cardElement = createCard({
+    name: popupNewImageName.value,
+    link: popupNewImageInfo.value,
+  });
   cardSection.addItem(cardElement);
 });
 popupAddCard.setEventListeners();
@@ -76,13 +78,7 @@ popupNewImageOpenButton.addEventListener('click', () => {
 /*============ добавим событие после загрузки страницы ====*/
 document.addEventListener('DOMContentLoaded', () => {
   initialCards.forEach((item) => {
-    const card = new Card(
-      item,
-      '.card-template_type_default',
-      popupImage,
-      viewImagePopup.open
-    );
-    const cardElement = card.generateCard();
+    const cardElement = createCard(item);
     cardSection.addItem(cardElement);
   });
 });
