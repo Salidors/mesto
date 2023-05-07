@@ -15,19 +15,7 @@ export default class PopupWithForm extends Popup {
   }
 
   setEventListeners() {
-    document.addEventListener('keyup', (event) => {
-      this._handleEscClose(event);
-    });
-
-    this._popup.addEventListener('click', (event) => {
-      this._handleClickClose(event);
-    });
-
-    this._popup
-      .querySelector('.popup__close')
-      .addEventListener('click', (event) => {
-        this.close(event);
-      });
+    super.setEventListeners();
 
     this._popup
       .querySelector('.popup__filler')
@@ -43,9 +31,10 @@ export default class PopupWithForm extends Popup {
     this._nameField.value = '';
     this._infoField.value = '';
   }
-  
+
   close() {
+    super.close();
+
     this._resetFields();
-    this._popup.classList.remove('popup_opened');
   }
 }
