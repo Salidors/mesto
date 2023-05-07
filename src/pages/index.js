@@ -1,4 +1,4 @@
-import { validationConfig, initialCards } from '../components/constants.js';
+import { validationConfig, initialCards } from '../../utils/constants.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/popupWithForm.js';
