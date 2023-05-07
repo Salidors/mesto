@@ -39,9 +39,9 @@ viewImagePopup.setEventListeners();
 
 /*=============== обработчики событий ====================*/
 /*========== Событие на открытие попапов ==============*/
-const profilePopup = new PopupWithForm('#formEditPopup', () => {
-  profileName.textContent = subtitleName.value;
-  profileTitle.textContent = info.value;
+const profilePopup = new PopupWithForm('#formEditPopup', (args) => {
+  profileName.textContent = args[0];
+  profileTitle.textContent = args[1];
 });
 profilePopup.setEventListeners();
 
