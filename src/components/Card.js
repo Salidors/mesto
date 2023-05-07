@@ -23,7 +23,10 @@ export default class Card {
   generateCard() {
     this._setEventListeners();
 
-    this._element.querySelector('.card__image').src = this._link;
+    const image = this._element.querySelector('.card__image');
+
+    image.src = this._link;
+    image.alt = this._name;
     this._element.querySelector('.item__text').textContent = this._name;
 
     return this._element;
@@ -48,7 +51,7 @@ export default class Card {
   }
 
   _handleOnOpenPopup() {
-    this._handleCardClick(this._name, this._link)
+    this._handleCardClick(this._name, this._link);
   }
 
   _handleLike() {
