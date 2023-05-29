@@ -140,18 +140,47 @@
       </section>
 
       <!--================= POPUP-DELETE ======================= -->
-<section class="popup">
-
-  <button
-  class="popup__delete popup__button link"
-  name="delete"
-  type="button"
->
-  Да
-</button>
-</section>
-
+      <section class="popup" id="deletePopup">
+        <div class="popup__container">
+          <h2 class="popup__title">Вы уверены?</h2>
+          <button class="popup__close link" type="button"></button>
+          <button
+            class="popup__save popup__button link"
+            name="delete"
+            type="button"
+          >
+            Да
+          </button>
+        </div>
+      </section>
     </main>
+
+    <!--================= POPUP-AVATAR ======================= -->
+
+    <section class="popup" id="formPopupAvatar">
+      <div class="popup__container">
+        <button class="popup__close link" type="button"></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+
+        <form class="popup__filler" name="popup" novalidate>
+          <input
+            class="popup__input popup__input_subtitle_info"
+            name="link-card"
+            type="url"
+            placeholder="Ссылка на картинку"
+            required
+          />
+          <span id="link-card-error" class="popup__error"></span>
+          <button
+            class="popup__save popup__button link popup__button_disabled"
+            name="save"
+            type="submit"
+          >
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </section>
 
     <!--============== FOOTER =====================-->
     <footer class="footer">
@@ -169,7 +198,10 @@
         <img src="#" alt="" class="card__image" />
         <div class="card__item">
           <h2 class="card__title item__text"></h2>
-          <button type="button" class="card__like link"></button>
+          <div class="card__like_counter-btn">
+            <button type="button" class="card__like link"></button>
+            <div class="card__like_counter">5</div>
+          </div>
         </div>
       </li>
     </template>
