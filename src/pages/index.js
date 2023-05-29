@@ -6,6 +6,7 @@ import PopupWithImage from '../components/popupWithImage.js';
 import Section from '../components/section.js';
 import UserInfo from '../components/userInfo.js';
 import './index.css';
+import { Api } from '../components/Api.js';
 
 /*============== глобальные переменные ==================*/
 //ЭЛЕМЕНТЫ ПОПАПА НА ИЗМЕНЕНИЕ ЛИЧНЫХ ДАННЫХ
@@ -34,18 +35,11 @@ viewImagePopup.setEventListeners();
 /*=============== обработчики событий ====================*/
 /*========== Событие на открытие попапов ==============*/
 const profilePopup = new PopupWithForm('#formEditPopup', (args) => {
-  fetch('https://mesto.nomoreparties.co/v1/cohort-66/users/me', {
-    method: 'PATCH',
-    headers: {
-      authorization: token,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
+  api
+    .setProfile({
       name: args[0],
       about: args[1],
-    }),
-  })
-    .then((res) => res.json())
+    })
     .then((result) => {
       userInfo.setUserInfo(result.name, result.about);
     });
@@ -72,46 +66,42 @@ const createCard = (data) => {
   return card.generateCard();
 };
 
-fetch('https://mesto.nomoreparties.co/v1/cohort-66/cards', {
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-66',
   headers: {
     authorization: token,
+    'Content-Type': 'application/json',
   },
-})
-  .then((res) => res.json())
-  .then((result) => {
-    const cardSection = new Section(
-      { items: result, renderer: createCard },
-      '.cards__list'
-    );
-    const popupAddCard = new PopupWithForm('#formAddPopup', (args) => {
-      fetch('https://mesto.nomoreparties.co/v1/cohort-66/cards', {
-        method: 'POST',
-        headers: {
-          authorization: token,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: args[0],
-          link: args[1],
-        }),
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          const cardElement = createCard({
-            name: result.name,
-            link: result.link,
-          });
-          cardSection.addItem(cardElement);
-        });
-    });
-    popupAddCard.setEventListeners();
+});
 
-    popupNewImageOpenButton.addEventListener('click', () => {
-      cardFormValidator.disableSubmitButton();
-      popupAddCard.open();
-    });
-    cardSection.renderItems();
+api.getInitialCards().then((result) => {
+  const cardSection = new Section(
+    { items: result, renderer: createCard },
+    '.cards__list'
+  );
+  const popupAddCard = new PopupWithForm('#formAddPopup', (args) => {
+    api
+      .addCard({
+        name: args[0],
+        link: args[1],
+      })
+
+      .then((result) => {
+        const cardElement = createCard({
+          name: result.name,
+          link: result.link,
+        });
+        cardSection.addItem(cardElement);
+      });
   });
+  popupAddCard.setEventListeners();
+
+  popupNewImageOpenButton.addEventListener('click', () => {
+    cardFormValidator.disableSubmitButton();
+    popupAddCard.open();
+  });
+  cardSection.renderItems();
+});
 
 /*============ добавим событие после загрузки страницы ====*/
 
@@ -125,20 +115,14 @@ const cardForm = document.querySelector('#formAddPopup').querySelector('form');
 const cardFormValidator = new FormValidator(validationConfig, cardForm);
 cardFormValidator.enableValidation();
 
-fetch('https://mesto.nomoreparties.co/v1/cohort-66/users/me', {
-  headers: {
-    authorization: token,
-  },
-})
-  .then((res) => res.json())
-  .then((result) => {
-    const avatar = document.querySelector('.profile__avatar');
-    const profileName = document.querySelector('.profile__name');
-    const profileTitle = document.querySelector('.profile__title');
-    avatar.src = result.avatar;
-    avatar.alt = result.name;
+api.getProfile().then((result) => {
+  const avatar = document.querySelector('.profile__avatar');
+  const profileName = document.querySelector('.profile__name');
+  const profileTitle = document.querySelector('.profile__title');
+  avatar.src = result.avatar;
+  avatar.alt = result.name;
 
-    profileName.textContent = result.name;
+  profileName.textContent = result.name;
 
-    profileTitle.textContent = result.about;
-  });
+  profileTitle.textContent = result.about;
+});
