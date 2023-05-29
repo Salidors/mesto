@@ -84,11 +84,25 @@ fetch('https://mesto.nomoreparties.co/v1/cohort-66/cards', {
       '.cards__list'
     );
     const popupAddCard = new PopupWithForm('#formAddPopup', (args) => {
-      const cardElement = createCard({
-        name: args[0],
-        link: args[1],
-      });
-      cardSection.addItem(cardElement);
+      fetch('https://mesto.nomoreparties.co/v1/cohort-66/cards', {
+        method: 'POST',
+        headers: {
+          authorization: token,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: args[0],
+          link: args[1],
+        }),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          const cardElement = createCard({
+            name: result.name,
+            link: result.link,
+          });
+          cardSection.addItem(cardElement);
+        });
     });
     popupAddCard.setEventListeners();
 
