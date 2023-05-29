@@ -1,8 +1,4 @@
-import {
-  validationConfig,
-  initialCards,
-  token,
-} from '../../utils/constants.js';
+import { validationConfig, token } from '../../utils/constants.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/popupWithForm.js';
@@ -61,29 +57,35 @@ const createCard = (data) => {
 
   return card.generateCard();
 };
-const cardSection = new Section(
-  { items: initialCards, renderer: createCard },
-  '.cards__list'
-);
 
-const popupAddCard = new PopupWithForm('#formAddPopup', (args) => {
-  const cardElement = createCard({
-    name: args[0],
-    link: args[1],
+fetch('https://mesto.nomoreparties.co/v1/cohort-66/cards', {
+  headers: {
+    authorization: token,
+  },
+})
+  .then((res) => res.json())
+  .then((result) => {
+    const cardSection = new Section(
+      { items: result, renderer: createCard },
+      '.cards__list'
+    );
+    const popupAddCard = new PopupWithForm('#formAddPopup', (args) => {
+      const cardElement = createCard({
+        name: args[0],
+        link: args[1],
+      });
+      cardSection.addItem(cardElement);
+    });
+    popupAddCard.setEventListeners();
+
+    popupNewImageOpenButton.addEventListener('click', () => {
+      cardFormValidator.disableSubmitButton();
+      popupAddCard.open();
+    });
+    cardSection.renderItems();
   });
-  cardSection.addItem(cardElement);
-});
-popupAddCard.setEventListeners();
-
-popupNewImageOpenButton.addEventListener('click', () => {
-  cardFormValidator.disableSubmitButton();
-  popupAddCard.open();
-});
 
 /*============ добавим событие после загрузки страницы ====*/
-document.addEventListener('DOMContentLoaded', () => {
-  cardSection.renderItems();
-});
 
 const profileForm = document
   .querySelector('#formEditPopup')

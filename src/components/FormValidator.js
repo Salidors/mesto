@@ -11,7 +11,7 @@ export default class FormValidator {
     );
     if (input.checkValidity()) {
       currentInputErrorContainer.textContent = '';
-      inputspinner_visible 
+      input.classList.remove(this._config.inputErrorClass);
     } else {
       currentInputErrorContainer.textContent = input.validationMessage;
       input.classList.add(this._config.inputErrorClass);
