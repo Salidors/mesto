@@ -1,4 +1,8 @@
-import { validationConfig, initialCards } from '../../utils/constants.js';
+import {
+  validationConfig,
+  initialCards,
+  token,
+} from '../../utils/constants.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/popupWithForm.js';
@@ -90,3 +94,21 @@ profileFormValidator.enableValidation();
 const cardForm = document.querySelector('#formAddPopup').querySelector('form');
 const cardFormValidator = new FormValidator(validationConfig, cardForm);
 cardFormValidator.enableValidation();
+
+fetch('https://mesto.nomoreparties.co/v1/cohort-66/users/me', {
+  headers: {
+    authorization: token,
+  },
+})
+  .then((res) => res.json())
+  .then((result) => {
+    const avatar = document.querySelector('.profile__avatar');
+    const profileName = document.querySelector('.profile__name');
+    const profileTitle = document.querySelector('.profile__title');
+    avatar.src = result.avatar;
+    avatar.alt = result.name;
+
+    profileName.textContent = result.name;
+
+    profileTitle.textContent = result.about;
+  });
