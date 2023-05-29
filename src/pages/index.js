@@ -34,7 +34,21 @@ viewImagePopup.setEventListeners();
 /*=============== обработчики событий ====================*/
 /*========== Событие на открытие попапов ==============*/
 const profilePopup = new PopupWithForm('#formEditPopup', (args) => {
-  userInfo.setUserInfo(args[0], args[1]);
+  fetch('https://mesto.nomoreparties.co/v1/cohort-66/users/me', {
+    method: 'PATCH',
+    headers: {
+      authorization: token,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name: args[0],
+      about: args[1],
+    }),
+  })
+    .then((res) => res.json())
+    .then((result) => {
+      userInfo.setUserInfo(result.name, result.about);
+    });
 });
 profilePopup.setEventListeners();
 
