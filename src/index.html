@@ -143,14 +143,17 @@
       <section class="popup" id="deletePopup">
         <div class="popup__container">
           <h2 class="popup__title">Вы уверены?</h2>
+
           <button class="popup__close link" type="button"></button>
-          <button
-            class="popup__save popup__button link"
-            name="delete"
-            type="button"
-          >
-            Да
-          </button>
+          <form class="popup__filler" name="popup" novalidate>
+            <button
+              class="popup__save popup__button link"
+              name="delete"
+              type="submit"
+            >
+              Да
+            </button>
+          </form>
         </div>
       </section>
     </main>
@@ -200,7 +203,7 @@
           <h2 class="card__title item__text"></h2>
           <div class="card__like_counter-btn">
             <button type="button" class="card__like link"></button>
-            <div class="card__like_counter">5</div>
+            <p class="card__like_counter">5</p>
           </div>
         </div>
       </li>

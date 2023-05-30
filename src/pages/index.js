@@ -11,14 +11,9 @@ import { Api } from '../components/Api.js';
 /*============== глобальные переменные ==================*/
 //ЭЛЕМЕНТЫ ПОПАПА НА ИЗМЕНЕНИЕ ЛИЧНЫХ ДАННЫХ
 const popupProfileOpenButton = document.querySelector('.profile__button');
-// const buttonClosePopupEditProfile = popupProfile.querySelector('.popup__close');
 
 //ЭЛЕМЕНТЫ ПОПАПА НА ДОБАВЛЕНИЕ КАРТИНОК
 const popupNewImageOpenButton = document.querySelector('.profile__add-button');
-
-//ДЕМОНСТРАЦИЯ ИЗОБРАЖЕНИЯ
-const popupImage = document.querySelector('#formImagePopup');
-// const popupImageCloseButton = popupImage.querySelector('.popup__close');
 
 //ОБЩИЕ ДЛЯ ПОПАП С ДОБАВЛЕНИЕМ ИНФЫ
 const subtitleName = document.querySelector('.popup__input_subtitle_name');
@@ -59,8 +54,8 @@ const createCard = (data) => {
   const card = new Card(
     data,
     '.card-template_type_default',
-    popupImage,
     viewImagePopup.open.bind(viewImagePopup)
+    // confirmDeleteImagePopup.open.bind(confirmDeleteImagePopup)
   );
 
   return card.generateCard();
