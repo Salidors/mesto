@@ -55,7 +55,10 @@ const createCard = (data) => {
     data,
     '.card-template_type_default',
     viewImagePopup.open.bind(viewImagePopup),
-    api.deleteCard.bind(api)
+    api.deleteCard.bind(api),
+    api.addLike.bind(api),
+    api.deleteLike.bind(api),
+    userInfo.getUserInfo().name
   );
 
   return card.generateCard();
@@ -70,7 +73,6 @@ const api = new Api({
 });
 
 api.getInitialCards().then((result) => {
-  console.log(result);
   const cardSection = new Section(
     { items: result, renderer: createCard },
     '.cards__list'
@@ -83,11 +85,11 @@ api.getInitialCards().then((result) => {
       })
 
       .then((result) => {
+        console.log(result.likes);
         const cardElement = createCard({
           name: result.name,
           link: result.link,
-          canDelete: true,
-          id: result._id,
+          _id: result._id,
         });
         cardSection.addItem(cardElement);
       });

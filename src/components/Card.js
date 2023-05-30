@@ -2,22 +2,38 @@
 import PopupWithForm from './popupWithForm';
 
 export default class Card {
-  constructor(data, templateSelector, handleCardClick, handleDeleteCard) {
-    this._id = data.id;
+  constructor(
+    data,
+    templateSelector,
+    handleCardClick,
+    handleDeleteCard,
+    handleAddLike,
+    handleDeleteLike,
+    userName
+  ) {
+    this._id = data._id;
     this._name = data.name;
     this._link = data.link;
-    this._likes = data.likes?.length || 0;
-    this._canDelete = data.canDelete;
+
+    this._isCardOwner = Boolean(data.owner.name === userName);
+    const isLikedByOwner = Boolean(
+      data.likes?.some((l) => l.name === userName)
+    );
 
     this._templateSelector = templateSelector;
     this._element = this._getTemplate();
 
     this._like = this._element.querySelector('.card__like');
+    if (isLikedByOwner) this._like.classList.add('card__like_black_heart');
     this._likeCounter = this._element.querySelector('.card__like_counter');
     this._cardTrash = this._element.querySelector('.card__trash');
 
+    this._setLikesCount(data.likes?.length || 0);
+
     this._handleCardClick = handleCardClick;
     this._handleDeleteCard = handleDeleteCard;
+    this._handleDeleteLike = handleDeleteLike;
+    this._handleAddLike = handleAddLike;
   }
 
   _getTemplate() {
@@ -35,9 +51,8 @@ export default class Card {
     image.src = this._link;
     image.alt = this._name;
     this._element.querySelector('.item__text').textContent = this._name;
-    this._likeCounter.textContent = this._likes;
 
-    if (!this._canDelete) this._cardTrash.remove();
+    if (!this._isCardOwner) this._cardTrash.remove();
 
     return this._element;
   }
@@ -48,7 +63,6 @@ export default class Card {
     });
 
     this._cardTrash.addEventListener('click', () => {
-      console.log(this._id);
       const confirmDeleteImagePopup = new PopupWithForm('#deletePopup', () => {
         this._handleDelete();
         this._handleDeleteCard(this._id);
@@ -68,7 +82,17 @@ export default class Card {
     this._handleCardClick(this._name, this._link);
   }
 
-  _handleLike() {
+  _setLikesCount(count) {
+    this._likeCounter.textContent = count;
+  }
+
+  async _handleLike() {
+    let result;
+    if (this._like.classList.contains('card__like_black_heart'))
+      result = await this._handleDeleteLike(this._id);
+    else result = await this._handleAddLike(this._id);
+    this._setLikesCount(result.likes.length);
+
     this._like.classList.toggle('card__like_black_heart');
   }
 
