@@ -54,8 +54,8 @@ const createCard = (data) => {
   const card = new Card(
     data,
     '.card-template_type_default',
-    viewImagePopup.open.bind(viewImagePopup)
-    // confirmDeleteImagePopup.open.bind(confirmDeleteImagePopup)
+    viewImagePopup.open.bind(viewImagePopup),
+    api.deleteCard.bind(api)
   );
 
   return card.generateCard();
@@ -70,6 +70,7 @@ const api = new Api({
 });
 
 api.getInitialCards().then((result) => {
+  console.log(result);
   const cardSection = new Section(
     { items: result, renderer: createCard },
     '.cards__list'
@@ -85,6 +86,8 @@ api.getInitialCards().then((result) => {
         const cardElement = createCard({
           name: result.name,
           link: result.link,
+          canDelete: true,
+          id: result._id,
         });
         cardSection.addItem(cardElement);
       });
