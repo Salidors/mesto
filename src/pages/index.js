@@ -85,11 +85,8 @@ api.getInitialCards().then((result) => {
       })
 
       .then((result) => {
-        console.log(result.likes);
         const cardElement = createCard({
-          name: result.name,
-          link: result.link,
-          _id: result._id,
+          ...result,
         });
         cardSection.addItem(cardElement);
       });
