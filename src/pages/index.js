@@ -12,7 +12,7 @@ import { Api } from '../components/Api.js';
 //ЭЛЕМЕНТЫ ПОПАПА НА ИЗМЕНЕНИЕ ЛИЧНЫХ ДАННЫХ
 const popupProfileOpenButton = document.querySelector('.profile__button');
 const popupAvatarOpenButton = document.querySelector('.profile__button-avatar');
-const avatarImage = document.querySelector('.profile__avatar');
+const avatarImage = document.querySelector('#popupAvatar');
 
 //ЭЛЕМЕНТЫ ПОПАПА НА ДОБАВЛЕНИЕ КАРТИНОК
 const popupNewImageOpenButton = document.querySelector('.profile__add-button');
