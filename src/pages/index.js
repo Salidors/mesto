@@ -34,7 +34,6 @@ viewImagePopup.setEventListeners();
 /*========== Событие на открытие попапов ==============*/
 const profilePopup = new PopupWithForm('#formEditPopup', (args) => {
   setLoading('#formEditPopup', true);
-
   api
     .setProfile({
       name: args[0],
@@ -71,7 +70,7 @@ const setLoading = (popupSelector, isLoading) => {
 };
 
 const avatarPopup = new PopupWithForm('#formPopupAvatar', (args) => {
-  setLoading('#formPopupAvatar');
+  setLoading('#formPopupAvatar', true);
   api
     .setAvatar(args[0])
     .then((result) => {
