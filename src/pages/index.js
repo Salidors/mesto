@@ -45,6 +45,9 @@ const profilePopup = new PopupWithForm('#formEditPopup', (args) => {
     .then((result) => {
       userInfo.setUserInfo(result.name, result.about);
     })
+    .catch((error) => {
+      console.error(error);
+    })
     .finally(() => {
       button.textContent = prevText;
     });
@@ -70,6 +73,9 @@ const avatarPopup = new PopupWithForm('#formPopupAvatar', (args) => {
     .setAvatar(args[0])
     .then((result) => {
       avatarImage.src = result.avatar;
+    })
+    .catch((error) => {
+      console.error(error);
     })
     .finally(() => {
       button.textContent = prevText;
@@ -104,41 +110,46 @@ const api = new Api({
   },
 });
 
-api.getInitialCards().then((result) => {
-  const cardSection = new Section(
-    { items: result, renderer: createCard },
-    '.cards__list'
-  );
-  const popupAddCard = new PopupWithForm('#formAddPopup', (args) => {
-    const button = document
-      .querySelector('#formAddPopup')
-      .querySelector('[type=submit]');
-    const prevText = button.textContent;
-    button.textContent = 'Сохранение...';
-    api
-      .addCard({
-        name: args[0],
-        link: args[1],
-      })
+api
+  .getInitialCards()
+  .then((result) => {
+    const cardSection = new Section(
+      { items: result, renderer: createCard },
+      '.cards__list'
+    );
+    const popupAddCard = new PopupWithForm('#formAddPopup', (args) => {
+      const button = document
+        .querySelector('#formAddPopup')
+        .querySelector('[type=submit]');
+      const prevText = button.textContent;
+      button.textContent = 'Сохранение...';
+      api
+        .addCard({
+          name: args[0],
+          link: args[1],
+        })
 
-      .then((result) => {
-        const cardElement = createCard({
-          ...result,
+        .then((result) => {
+          const cardElement = createCard({
+            ...result,
+          });
+          cardSection.addItem(cardElement);
+        })
+        .finally(() => {
+          button.textContent = prevText;
         });
-        cardSection.addItem(cardElement);
-      })
-      .finally(() => {
-        button.textContent = prevText;
-      });
-  });
-  popupAddCard.setEventListeners();
+    });
+    popupAddCard.setEventListeners();
 
-  popupNewImageOpenButton.addEventListener('click', () => {
-    cardFormValidator.disableSubmitButton();
-    popupAddCard.open();
+    popupNewImageOpenButton.addEventListener('click', () => {
+      cardFormValidator.disableSubmitButton();
+      popupAddCard.open();
+    });
+    cardSection.renderItems();
+  })
+  .catch((error) => {
+    console.error(error);
   });
-  cardSection.renderItems();
-});
 
 /*============ добавим событие после загрузки страницы ====*/
 
@@ -158,14 +169,19 @@ const cardForm = document.querySelector('#formAddPopup').querySelector('form');
 const cardFormValidator = new FormValidator(validationConfig, cardForm);
 cardFormValidator.enableValidation();
 
-api.getProfile().then((result) => {
-  const avatar = document.querySelector('.profile__avatar');
-  const profileName = document.querySelector('.profile__name');
-  const profileTitle = document.querySelector('.profile__title');
-  avatar.src = result.avatar;
-  avatar.alt = result.name;
+api
+  .getProfile()
+  .then((result) => {
+    const avatar = document.querySelector('.profile__avatar');
+    const profileName = document.querySelector('.profile__name');
+    const profileTitle = document.querySelector('.profile__title');
+    avatar.src = result.avatar;
+    avatar.alt = result.name;
 
-  profileName.textContent = result.name;
+    profileName.textContent = result.name;
 
-  profileTitle.textContent = result.about;
-});
+    profileTitle.textContent = result.about;
+  })
+  .catch((error) => {
+    console.error(error);
+  });
