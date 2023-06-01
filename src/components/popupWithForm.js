@@ -24,7 +24,7 @@ export default class PopupWithForm extends Popup {
 
         this._submit(this._getInputValues.bind(this)());
 
-        this.close();
+        // this.close();
       });
   }
 

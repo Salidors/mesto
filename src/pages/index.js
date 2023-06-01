@@ -32,11 +32,8 @@ viewImagePopup.setEventListeners();
 /*=============== обработчики событий ====================*/
 /*========== Событие на открытие попапов ==============*/
 const profilePopup = new PopupWithForm('#formEditPopup', (args) => {
-  const button = document
-    .querySelector('#formEditPopup')
-    .querySelector('[type=submit]');
-  const prevText = button.textContent;
-  button.textContent = 'Сохранение...';
+  setLoading('#formEditPopup', true);
+
   api
     .setProfile({
       name: args[0],
@@ -44,12 +41,13 @@ const profilePopup = new PopupWithForm('#formEditPopup', (args) => {
     })
     .then((result) => {
       userInfo.setUserInfo(result.name, result.about);
+      profilePopup.close();
     })
     .catch((error) => {
       console.error(error);
     })
     .finally(() => {
-      button.textContent = prevText;
+      setLoading('#formEditPopup', false);
     });
 });
 profilePopup.setEventListeners();
@@ -63,22 +61,27 @@ popupProfileOpenButton.addEventListener('click', () => {
   profilePopup.open();
 });
 
-const avatarPopup = new PopupWithForm('#formPopupAvatar', (args) => {
+const setLoading = (popupSelector, isLoading) => {
   const button = document
-    .querySelector('#formPopupAvatar')
+    .querySelector(popupSelector)
     .querySelector('[type=submit]');
   const prevText = button.textContent;
-  button.textContent = 'Сохранение...';
+  if (isLoading) button.textContent = 'Сохранение...';
+  else button.textContent = prevText;
+};
+const avatarPopup = new PopupWithForm('#formPopupAvatar', (args) => {
+  setLoading('#formPopupAvatar');
   api
     .setAvatar(args[0])
     .then((result) => {
       userInfo.setAvatar(result.avatar);
+      avatarPopup.close();
     })
     .catch((error) => {
       console.error(error);
     })
     .finally(() => {
-      button.textContent = prevText;
+      setLoading('#formPopupAvatar', false);
     });
 });
 avatarPopup.setEventListeners();
@@ -110,33 +113,34 @@ const api = new Api({
   },
 });
 
-api
-  .getInitialCards()
-  .then((result) => {
+Promise.all([api.getProfile(), api.getInitialCards()])
+  .then(([userData, initialCards]) => {
+    userInfo.setAvatar(userData.avatar);
+    userInfo.setUserInfo(userData.name, userData.about);
+
     const cardSection = new Section(
-      { items: result, renderer: createCard },
+      { items: initialCards, renderer: createCard },
       '.cards__list'
     );
     const popupAddCard = new PopupWithForm('#formAddPopup', (args) => {
-      const button = document
-        .querySelector('#formAddPopup')
-        .querySelector('[type=submit]');
-      const prevText = button.textContent;
-      button.textContent = 'Сохранение...';
+      setLoading('#formAddPopup', true);
       api
         .addCard({
           name: args[0],
           link: args[1],
         })
-
         .then((result) => {
           const cardElement = createCard({
             ...result,
           });
           cardSection.addItem(cardElement);
+          popupAddCard.close();
+        })
+        .catch((error) => {
+          console.error(error);
         })
         .finally(() => {
-          button.textContent = prevText;
+          setLoading('#formAddPopup', false);
         });
     });
     popupAddCard.setEventListeners();
@@ -150,7 +154,6 @@ api
   .catch((error) => {
     console.error(error);
   });
-
 /*============ добавим событие после загрузки страницы ====*/
 
 const profileForm = document
@@ -168,20 +171,3 @@ avatarFormValidator.enableValidation();
 const cardForm = document.querySelector('#formAddPopup').querySelector('form');
 const cardFormValidator = new FormValidator(validationConfig, cardForm);
 cardFormValidator.enableValidation();
-
-api
-  .getProfile()
-  .then((result) => {
-    const avatar = document.querySelector('.profile__avatar');
-    const profileName = document.querySelector('.profile__name');
-    const profileTitle = document.querySelector('.profile__title');
-    avatar.src = result.avatar;
-    avatar.alt = result.name;
-
-    profileName.textContent = result.name;
-
-    profileTitle.textContent = result.about;
-  })
-  .catch((error) => {
-    console.error(error);
-  });
