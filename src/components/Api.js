@@ -4,13 +4,16 @@ export class Api {
     this._headers = options.headers;
   }
 
+  _getResponseData(response) {
+    if (response.ok) return response.json();
+
+    return Promise.reject(`Ошибка: ${response.status}`);
+  }
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     }).then((res) => {
-      if (res.ok) return res.json();
-
-      return Promise.reject(`Ошибка: ${res.status}`);
+      return this._getResponseData(res);
     });
   }
 
@@ -20,9 +23,7 @@ export class Api {
       headers: this._headers,
       body: JSON.stringify(data),
     }).then((res) => {
-      if (res.ok) return res.json();
-
-      return Promise.reject(`Ошибка: ${res.status}`);
+      return this._getResponseData(res);
     });
   }
 
@@ -31,9 +32,7 @@ export class Api {
       method: 'DELETE',
       headers: this._headers,
     }).then((res) => {
-      if (res.ok) return res.json();
-
-      return Promise.reject(`Ошибка: ${res.status}`);
+      return this._getResponseData(res);
     });
   }
 
@@ -41,9 +40,7 @@ export class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     }).then((res) => {
-      if (res.ok) return res.json();
-
-      return Promise.reject(`Ошибка: ${res.status}`);
+      return this._getResponseData(res);
     });
   }
 
@@ -53,7 +50,7 @@ export class Api {
       headers: this._headers,
       body: JSON.stringify(data),
     }).then((res) => {
-      if (res.ok) return res.json();
+      return this._getResponseData(res);
     });
   }
 
@@ -62,9 +59,7 @@ export class Api {
       method: 'PUT',
       headers: this._headers,
     }).then((res) => {
-      if (res.ok) return res.json();
-
-      return Promise.reject(`Ошибка: ${res.status}`);
+      return this._getResponseData(res);
     });
   }
 
@@ -73,9 +68,7 @@ export class Api {
       method: 'DELETE',
       headers: this._headers,
     }).then((res) => {
-      if (res.ok) return res.json();
-
-      return Promise.reject(`Ошибка: ${res.status}`);
+      return this._getResponseData(res);
     });
   }
 
@@ -85,7 +78,7 @@ export class Api {
       headers: this._headers,
       body: JSON.stringify({ avatar: url }),
     }).then((res) => {
-      if (res.ok) return res.json();
+      return this._getResponseData(res);
     });
   }
 }
