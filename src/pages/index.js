@@ -12,7 +12,6 @@ import { Api } from '../components/Api.js';
 //ЭЛЕМЕНТЫ ПОПАПА НА ИЗМЕНЕНИЕ ЛИЧНЫХ ДАННЫХ
 const popupProfileOpenButton = document.querySelector('.profile__button');
 const popupAvatarOpenButton = document.querySelector('.profile__button-avatar');
-const avatarImage = document.querySelector('#popupAvatar');
 
 //ЭЛЕМЕНТЫ ПОПАПА НА ДОБАВЛЕНИЕ КАРТИНОК
 const popupNewImageOpenButton = document.querySelector('.profile__add-button');
@@ -24,6 +23,7 @@ const subtitleInfo = document.querySelector('.popup__input_subtitle_info');
 const userInfo = new UserInfo({
   selectorName: '.profile__name',
   selectorInfo: '.profile__title',
+  selectorAvatar: '#popupAvatar',
 });
 /*================ разбиваем массив на элементы создаем экземпляр ==============*/
 const viewImagePopup = new PopupWithImage('#formImagePopup');
@@ -72,7 +72,7 @@ const avatarPopup = new PopupWithForm('#formPopupAvatar', (args) => {
   api
     .setAvatar(args[0])
     .then((result) => {
-      avatarImage.src = result.avatar;
+      userInfo.setAvatar(result.avatar);
     })
     .catch((error) => {
       console.error(error);
