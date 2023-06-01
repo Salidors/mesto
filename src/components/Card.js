@@ -1,5 +1,4 @@
 // ============= создание карточек
-import PopupWithForm from './popupWithForm';
 
 export default class Card {
   constructor(
@@ -63,12 +62,7 @@ export default class Card {
     });
 
     this._cardTrash.addEventListener('click', () => {
-      const confirmDeleteImagePopup = new PopupWithForm('#deletePopup', () => {
-        this._handleDelete();
-        this._handleDeleteCard(this._id);
-      });
-      confirmDeleteImagePopup.setEventListeners();
-      confirmDeleteImagePopup.open();
+      this._handleDeleteCard(this);
     });
 
     this._element
@@ -96,7 +90,7 @@ export default class Card {
     this._like.classList.toggle('card__like_black_heart');
   }
 
-  _handleDelete() {
+  deleteCard() {
     this._element.remove();
   }
 }

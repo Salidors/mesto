@@ -3,6 +3,7 @@ import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import PopupWithForm from '../components/popupWithForm.js';
 import PopupWithImage from '../components/popupWithImage.js';
+import PopupPrompt from '../components/popupPrompt';
 import Section from '../components/section.js';
 import UserInfo from '../components/userInfo.js';
 import './index.css';
@@ -65,10 +66,10 @@ const setLoading = (popupSelector, isLoading) => {
   const button = document
     .querySelector(popupSelector)
     .querySelector('[type=submit]');
-  const prevText = button.textContent;
   if (isLoading) button.textContent = 'Сохранение...';
-  else button.textContent = prevText;
+  else button.textContent = 'Сохранить';
 };
+
 const avatarPopup = new PopupWithForm('#formPopupAvatar', (args) => {
   setLoading('#formPopupAvatar');
   api
@@ -91,12 +92,25 @@ popupAvatarOpenButton.addEventListener('click', () => {
   avatarPopup.open();
 });
 
+const confirmDeleteImagePopup = new PopupPrompt('#deletePopup', (card) => {
+  api
+    .deleteCard(card._id)
+    .then(() => {
+      card.deleteCard();
+      confirmDeleteImagePopup.close();
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+});
+confirmDeleteImagePopup.setEventListeners();
+
 const createCard = (data) => {
   const card = new Card(
     data,
     '.card-template_type_default',
     viewImagePopup.open.bind(viewImagePopup),
-    api.deleteCard.bind(api),
+    confirmDeleteImagePopup.open.bind(confirmDeleteImagePopup),
     api.addLike.bind(api),
     api.deleteLike.bind(api),
     userInfo.getUserInfo().name
