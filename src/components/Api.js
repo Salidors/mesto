@@ -5,9 +5,9 @@ export class Api {
   }
 
   _getResponseData(response) {
-    if (response.ok) return response.json();
-
-    return Promise.reject(`Ошибка: ${response.status}`);
+    return response.ok
+      ? response.json()
+      : Promise.reject(`Ошибка: ${response.status}`);
   }
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
