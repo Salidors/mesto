@@ -1,11 +1,11 @@
-import { validationConfig, token } from '../../utils/constants.js';
+import { validationConfig, token } from '../utils/constants.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
-import PopupWithForm from '../components/popupWithForm.js';
-import PopupWithImage from '../components/popupWithImage.js';
-import PopupPrompt from '../components/popupPrompt';
-import Section from '../components/section.js';
-import UserInfo from '../components/userInfo.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupPrompt from '../components/PopupPrompt.js';
+import Section from '../components/Section.js';
+import UserInfo from '../components/UserInfo.js';
 import './index.css';
 import { Api } from '../components/Api.js';
 
