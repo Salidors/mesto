@@ -12,9 +12,13 @@ export class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    }).then((res) => {
-      return this._getResponseData(res);
-    });
+    })
+      .then((res) => {
+        return this._getResponseData(res);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   addCard(data) {
@@ -22,26 +26,38 @@ export class Api {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify(data),
-    }).then((res) => {
-      return this._getResponseData(res);
-    });
+    })
+      .then((res) => {
+        return this._getResponseData(res);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
-    }).then((res) => {
-      return this._getResponseData(res);
-    });
+    })
+      .then((res) => {
+        return this._getResponseData(res);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   getProfile() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
-    }).then((res) => {
-      return this._getResponseData(res);
-    });
+    })
+      .then((res) => {
+        return this._getResponseData(res);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   setProfile(data) {
@@ -49,27 +65,39 @@ export class Api {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify(data),
-    }).then((res) => {
-      return this._getResponseData(res);
-    });
+    })
+      .then((res) => {
+        return this._getResponseData(res);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   addLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: this._headers,
-    }).then((res) => {
-      return this._getResponseData(res);
-    });
+    })
+      .then((res) => {
+        return this._getResponseData(res);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   deleteLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: this._headers,
-    }).then((res) => {
-      return this._getResponseData(res);
-    });
+    })
+      .then((res) => {
+        return this._getResponseData(res);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   setAvatar(url) {
@@ -77,8 +105,12 @@ export class Api {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({ avatar: url }),
-    }).then((res) => {
-      return this._getResponseData(res);
-    });
+    })
+      .then((res) => {
+        return this._getResponseData(res);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 }
