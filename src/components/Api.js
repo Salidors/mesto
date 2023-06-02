@@ -78,26 +78,18 @@ export class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: this._headers,
-    })
-      .then((res) => {
-        return this._getResponseData(res);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    }).then((res) => {
+      return this._getResponseData(res);
+    });
   }
 
   deleteLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: this._headers,
-    })
-      .then((res) => {
-        return this._getResponseData(res);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    }).then((res) => {
+      return this._getResponseData(res);
+    });
   }
 
   setAvatar(url) {

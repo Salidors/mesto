@@ -81,13 +81,17 @@ export default class Card {
   }
 
   async _handleLike() {
-    let result;
-    if (this._like.classList.contains('card__like_black_heart'))
-      result = await this._handleDeleteLike(this._id);
-    else result = await this._handleAddLike(this._id);
-    this._setLikesCount(result.likes.length);
+    try {
+      let result;
+      if (this._like.classList.contains('card__like_black_heart'))
+        result = await this._handleDeleteLike(this._id);
+      else result = await this._handleAddLike(this._id);
+      this._setLikesCount(result.likes.length);
 
-    this._like.classList.toggle('card__like_black_heart');
+      this._like.classList.toggle('card__like_black_heart');
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   deleteCard() {
