@@ -12,13 +12,9 @@ export class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
-    })
-      .then((res) => {
-        return this._getResponseData(res);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    }).then((res) => {
+      return this._getResponseData(res);
+    });
   }
 
   addCard(data) {
@@ -26,38 +22,26 @@ export class Api {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify(data),
-    })
-      .then((res) => {
-        return this._getResponseData(res);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    }).then((res) => {
+      return this._getResponseData(res);
+    });
   }
 
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
-    })
-      .then((res) => {
-        return this._getResponseData(res);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    }).then((res) => {
+      return this._getResponseData(res);
+    });
   }
 
   getProfile() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
-    })
-      .then((res) => {
-        return this._getResponseData(res);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    }).then((res) => {
+      return this._getResponseData(res);
+    });
   }
 
   setProfile(data) {
@@ -65,13 +49,9 @@ export class Api {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify(data),
-    })
-      .then((res) => {
-        return this._getResponseData(res);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    }).then((res) => {
+      return this._getResponseData(res);
+    });
   }
 
   addLike(cardId) {
@@ -97,12 +77,8 @@ export class Api {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({ avatar: url }),
-    })
-      .then((res) => {
-        return this._getResponseData(res);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    }).then((res) => {
+      return this._getResponseData(res);
+    });
   }
 }
